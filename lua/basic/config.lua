@@ -8,3 +8,4 @@ vim.g.FcitxToggleInput = function()
 end
 
 vim.cmd("autocmd InsertLeave * call FcitxToggleInput()")
+vim.g.vsnip_snippet_dir = "~/.config/nvim/snippet"
