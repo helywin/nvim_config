@@ -26,6 +26,57 @@ packer.startup(
                     require("conf.nvim-tree")
                 end
             }
+
+            -- one dark主题
+            use {
+                "navarasu/onedark.nvim",
+                config = function()
+                    require("conf.onedark")
+                end
+            }
+
+            -- windline状态栏插件
+            use {
+                "windwp/windline.nvim",
+                config = function()
+                    require("conf.windline")
+                end
+            }
+
+            -- gitsigns插件
+            use {
+                "lewis6991/gitsigns.nvim",
+                requires = {
+                    "nvim-lua/plenary.nvim"
+                },
+                config = function()
+                    require("conf.gitsigns")
+                end
+            }
+
+            -- bufferline插件
+            use {
+                "akinsho/bufferline.nvim",
+                requires = {
+                    "famiu/bufdelete.nvim"
+                },
+                config = function()
+                    require("conf.bufferline")
+                end
+            }
+
+            -- markdown preview插件
+            use {
+                "iamcco/markdown-preview.nvim",
+                -- 克隆完仓库需要安装npm依赖
+                run = "cd app && npm install",
+                setup = function()
+                    vim.g.mkdp_filetypes = { "markdown" }
+                end,
+                -- 只针对特定的文件类型能够执行命令
+                ft = { "markdown" },
+            }
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口
@@ -40,9 +91,10 @@ packer.startup(
 -- 实时生效配置
 vim.cmd(
     [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+        colorscheme onedark
+    augroup end
 ]]
 )
