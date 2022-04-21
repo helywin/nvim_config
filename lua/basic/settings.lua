@@ -67,3 +67,4 @@ vim.o.backspace="indent,eol,start"
 -- 设置一行最多100字符
 vim.o.tw = 100
 
+vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h14"
