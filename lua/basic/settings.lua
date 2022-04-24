@@ -68,5 +68,3 @@ vim.o.backspace="indent,eol,start"
 vim.o.tw = 100
 
 vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h14"
-vim.o.signcolumn = "number"
---vim.o.signcolumn = true

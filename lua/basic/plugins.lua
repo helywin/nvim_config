@@ -240,7 +240,7 @@ packer.startup(
                     {"f3fora/cmp-spell"}, -- 拼写建议
                     {"rafamadriz/friendly-snippets"}, -- 提供多种语言的代码片段
                     {"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
-                    {"tzachar/cmp-tabnine", run = "./install.sh"} -- tabnine 源,提供基于 AI 的智能补全
+                    --{"tzachar/cmp-tabnine", run = "./install.sh"} -- tabnine 源,提供基于 AI 的智能补全
                 },
                 config = function()
                     require("conf.nvim-cmp")
@@ -277,6 +277,37 @@ packer.startup(
                     require("conf.symbols-outline")
                 end
             }
+
+            -- -- 代码调试基础插件
+            -- use {
+            --     "mfussenegger/nvim-dap",
+            --     config = function()
+            --         require("conf.nvim-dap")
+            --     end
+            -- }
+
+            -- -- 为代码调试提供内联文本
+            -- use {
+            --     "theHamsta/nvim-dap-virtual-text",
+            --     requires = {
+            --         "mfussenegger/nvim-dap"
+            --     },
+            --     config = function()
+            --         require("conf.nvim-dap-virtual-text")
+            --     end
+            -- }
+
+            -- -- 为代码调试提供 UI 界面
+            -- use {
+            --     "rcarriga/nvim-dap-ui",
+            --     requires = {
+            --         "mfussenegger/nvim-dap"
+            --     },
+            --     config = function()
+            --         require("conf.nvim-dap-ui")
+            --     end
+            -- }
+
 
             -- 安装其它插件
         end,
