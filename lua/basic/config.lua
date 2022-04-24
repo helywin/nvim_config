@@ -7,5 +7,6 @@ vim.g.FcitxToggleInput = function()
     end
 end
 
+-- 退出插入模式时禁用小企鹅输入法
 vim.cmd("autocmd InsertLeave * call FcitxToggleInput()")
 vim.g.vsnip_snippet_dir = "~/.config/nvim/snippet"

@@ -247,16 +247,6 @@ packer.startup(
                 end
             }
 
-            -- 扩展 LSP 诊断
-            --[[
-            use {
-                "mfussenegger/nvim-lint",
-                config = function()
-                    require("conf.nvim-lint")
-                end
-            }
-            ]]--
-
             -- 语法高亮
             use {
                 "nvim-treesitter/nvim-treesitter",
@@ -270,7 +260,6 @@ packer.startup(
             }
 
             -- 代码注释
-            --[[
             use {
                 "numToStr/Comment.nvim",
                 requires = {
@@ -280,14 +269,15 @@ packer.startup(
                     require("conf.Comment")
                 end
             }
-            ]]--
 
+            -- 代码大纲
             use {
-                "vijaymarupudi/nvim-fzf",
+                "simrat39/symbols-outline.nvim",
                 config = function()
-                    require("conf.nvim-fzf");
+                    require("conf.symbols-outline")
                 end
             }
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口
