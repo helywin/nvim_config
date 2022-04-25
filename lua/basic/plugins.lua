@@ -118,12 +118,12 @@ packer.startup(
             }
 
             -- 自动会话管理
-            use {
-                "rmagatti/auto-session",
-                config = function()
-                    require("conf.auto-session")
-                end
-            }
+            -- use {
+            --     "rmagatti/auto-session",
+            --     config = function()
+            --         require("conf.auto-session")
+            --     end
+            -- }
 
             -- 显示滚动条
             use {
@@ -155,7 +155,8 @@ packer.startup(
                 requires = {
                     "nvim-lua/plenary.nvim", -- Lua 开发模块
                     "BurntSushi/ripgrep", -- 文字查找
-                    "sharkdp/fd" -- 文件查找
+                    "sharkdp/fd", -- 文件查找
+                    "kdheepak/lazygit.nvim" -- lazygit
                 },
                 config = function()
                     require("conf.telescope")
@@ -308,6 +309,24 @@ packer.startup(
             --     end
             -- }
 
+            -- 启动页面插件
+            use {
+                "glepnir/dashboard-nvim",
+                config = function()
+                    require("conf.dashboard-nvim")
+                end
+            }
+
+            -- lazygit插件
+            use {
+                "kdheepak/lazygit.nvim", -- lazygit
+                requires = {
+                    "nvim-lua/plenary.nvim",
+                },
+                config = function()
+                    require("conf.lazygit")
+                end,
+            }
 
             -- 安装其它插件
         end,

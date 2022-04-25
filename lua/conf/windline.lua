@@ -1,12 +1,22 @@
 -- https://github.com/windwp/windline.nvim
 -- 更多内置样式，参见：
 -- https://github.com/windwp/windline.nvim/tree/master/lua/wlsample
-
 local windline = require('windline')
 local effects = require('wlanimation.effects')
 local HSL = require('wlanimation.utils')
 require('wlsample.airline')
 local animation = require('wlanimation')
+local git_comps = require('windline.components.git')
+-- syntax using table
+local git_branch = {
+    text = git_comps.git_branch(),
+    hl_colors = {'white','black'},
+    --- component not visible if window width is less than 100
+    width = 100,
+}
+git_comps.git_branch(git_branch)
+local git_rev = require('windline.components.git_rev')
+git_rev.git_rev({format=" ⇡%s⇣%s",interval=10000})
 
 local is_run = false
 
