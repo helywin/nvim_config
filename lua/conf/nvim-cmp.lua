@@ -147,7 +147,7 @@ cmp.setup.cmdline(
     {
         sources = cmp.config.sources(
             {
-                {name = "path"}
+                {name = "path"},
             },
             {
                 {name = "cmdline"}
