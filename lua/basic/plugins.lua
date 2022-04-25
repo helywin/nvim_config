@@ -328,6 +328,19 @@ packer.startup(
                 end,
             }
 
+            -- orgmode
+            --[[
+            use {
+                "nvim-neorg/neorg",
+                -- tag = "latest",
+                ft = {"norg"},
+                after = "nvim-treesitter", -- You may want to specify Telescope here as well
+                config = function()
+                    require('conf.neorg')
+                end
+            }
+            ]]--
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口

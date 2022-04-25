@@ -74,13 +74,13 @@ cmp.setup(
         -- 绑定补全相关的按键
         mapping = {
             -- 上一个
-            ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<C-k>"] = cmp.mapping.select_prev_item(),
             -- 下一个
-            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<C-j>"] = cmp.mapping.select_next_item(),
             -- 选择补全
             ["<CR>"] = cmp.mapping.confirm(),
             --  出现或关闭补全
-            ["<C-k>"] = cmp.mapping(
+            ["<C-n>"] = cmp.mapping(
                 {
                     i = function()
                         if cmp.visible() then

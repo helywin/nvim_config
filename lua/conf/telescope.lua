@@ -3,20 +3,25 @@
 -- WARN: telescope 手动安装依赖 fd 和 repgrep
 -- https://github.com/sharkdp/fd
 -- https://github.com/BurntSushi/ripgrep
-
+local actions = require("telescope.actions")
 require("telescope").setup({
     defaults = {
-    -- ...
-  },
-  pickers = {
-    find_files = {
-      theme = "dropdown",
+        mappings = {
+            i = {
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+            }
+        }
+    },
+    pickers = {
+      find_files = {
+        theme = "dropdown",
+      }
+    },
+    extensions = {
+      -- ...
     }
-  },
-  extensions = {
-    -- ...
-  }
-  }
+    }
 )
 
 -- 查找文件
