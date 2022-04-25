@@ -29,9 +29,9 @@ packer.startup(
 
             -- one dark主题
             use {
-                "navarasu/onedark.nvim",
+                "olimorris/onedarkpro.nvim",
                 config = function()
-                    require("conf.onedark")
+                    require("conf.onedarkpro")
                 end
             }
 
@@ -341,6 +341,14 @@ packer.startup(
             }
             ]]--
 
+            -- 高亮当前行
+            use {
+                "yamatsum/nvim-cursorline",
+                config = function()
+                    require("conf.nvim-cursorline")
+                end
+            }
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口
@@ -358,7 +366,6 @@ vim.cmd(
     augroup packer_user_config
         autocmd!
         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-        colorscheme onedark
     augroup end
 ]]
 )

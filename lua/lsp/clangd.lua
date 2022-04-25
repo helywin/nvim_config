@@ -2,6 +2,7 @@ return {
     cmd = {
         "clangd",
         "--background-index",
+        "-j=8",
         "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++-*,/usr/bin/gcc,/usr/bin/g++",
         "--clang-tidy",
         --"--clang-tidy-checks=*",

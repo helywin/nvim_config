@@ -11,3 +11,6 @@ vim.api.nvim_set_keymap('i', '<C-h>', '<left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-l>', '<right>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-j>', '<down>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-k>', '<up>', { noremap = true })
+-- shift tab绑定按键
+vim.api.nvim_set_keymap('i', '<S-Tab>', '<C-d>', { noremap=true })
+vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap=true })
