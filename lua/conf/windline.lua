@@ -80,9 +80,9 @@ local function toggle_anim()
     })
 end
 
-WindLine.airline_anim_toggle = toggle_anim
+--WindLine.airline_anim_toggle = toggle_anim
 
 -- make it run on startup
-vim.defer_fn(function()
-    toggle_anim()
-end, 200)
+-- vim.defer_fn(function()
+--     toggle_anim()
+-- end, 200)

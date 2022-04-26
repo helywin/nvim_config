@@ -9,7 +9,7 @@ require("lsp_signature").setup(
             border = "rounded"
         },
         -- 自动触发
-        floating_window = true,
+        floating_window = false,
         -- 绑定按键
         toggle_key = "<C-p>",
         -- 虚拟提示关闭

@@ -7,8 +7,16 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 
--- 代替内置 omnifunc
+--代替内置 omnifunc
 require 'lspconfig'.clangd.setup {
+    capabilities = capabilities,
+}
+
+-- require 'lspconfig'.ccls.setup {
+--     capabilities = capabilities,
+-- }
+
+require 'lspconfig'.cmake.setup {
     capabilities = capabilities,
 }
 
@@ -20,10 +28,11 @@ require 'lspconfig'.sumneko_lua.setup {
 -- 名称：https://github.com/williamboman/nvim-lsp-installer#available-lsps
 -- 配置：https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
-local servers = {
+local install_servers = {
     -- 语言服务器名称：配置选项
     sumneko_lua = require("lsp.sumneko_lua"),
     clangd = require("lsp.clangd"),
+    -- ccls = require("lsp.ccls"),
     cmake = require("lsp.cmake"),
     json = require("lsp.jsonls"),
     zeta_note = require("lsp.zeta_note")
@@ -37,6 +46,10 @@ local servers = {
     -- sqls = require("lsp.sqls"),
     -- vuels = require("lsp.vuels")
 }
+
+-- local manual_servers = {
+--     ccls = require("lsp.ccls")
+-- }
 
 local opts = { noremap = true, silent = true }
 -- 这里是 LSP 服务启动后的按键加载
@@ -62,7 +75,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- 自动安装或启动 LanguageServers
-for server_name, server_options in pairs(servers) do
+for server_name, server_options in pairs(install_servers) do
     local server_available, server = lsp_installer_servers.get_server(server_name)
     -- 判断服务是否可用
     if server_available then
@@ -86,3 +99,15 @@ for server_name, server_options in pairs(servers) do
         end
     end
 end
+
+-- lspconfig.ccls.setup {
+--     init_options = {
+--         compilationDatabaseDirectory = "build";
+--         index = {
+--             threads = 0;
+--         };
+--         clang = {
+--             excludeArgs = { "-frounding-math" };
+--         };
+--     }
+-- }
