@@ -2,28 +2,6 @@
 
 local lsp_installer_servers = require("nvim-lsp-installer.servers")
 
--- 使用 cmp_nvim_lsp 代替内置 omnifunc，获得更强的补全体验
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-
---代替内置 omnifunc
-require 'lspconfig'.clangd.setup {
-    capabilities = capabilities,
-}
-
--- require 'lspconfig'.ccls.setup {
---     capabilities = capabilities,
--- }
-
-require 'lspconfig'.cmake.setup {
-    capabilities = capabilities,
-}
-
-require 'lspconfig'.sumneko_lua.setup {
-    capabilities = capabilities,
-}
-
 -- WARN: 手动书写 LSP 配置文件
 -- 名称：https://github.com/williamboman/nvim-lsp-installer#available-lsps
 -- 配置：https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -32,17 +10,16 @@ local install_servers = {
     -- 语言服务器名称：配置选项
     sumneko_lua = require("lsp.sumneko_lua"),
     clangd = require("lsp.clangd"),
-    -- ccls = require("lsp.ccls"),
     cmake = require("lsp.cmake"),
     json = require("lsp.jsonls"),
-    zeta_note = require("lsp.zeta_note")
+    zeta_note = require("lsp.zeta_note"),
+    bash = require("lsp.bashls"),
+    yaml = require("lsp.yamlls")
     -- pyright = require("lsp.pyright"),
     -- tsserver = require("lsp.tsserver"),
     -- html = require("lsp.html"),
     -- cssls = require("lsp.cssls"),
     -- gopls = require("lsp.gopls"),
-    -- jsonls = require("lsp.jsonls"),
-    -- zeta_note = require("lsp.zeta_note"),
     -- sqls = require("lsp.sqls"),
     -- vuels = require("lsp.vuels")
 }
@@ -74,6 +51,10 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+-- 使用 cmp_nvim_lsp 代替内置 omnifunc，获得更强的补全体验
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 -- 自动安装或启动 LanguageServers
 for server_name, server_options in pairs(install_servers) do
     local server_available, server = lsp_installer_servers.get_server(server_name)
@@ -84,6 +65,9 @@ for server_name, server_options in pairs(install_servers) do
             function()
                 -- keybind
                 server_options.on_attach = on_attach
+                --代替内置 omnifunc
+                server_options.capabilities = capabilities
+
                 -- options config
                 server_options.flags = {
                     debounce_text_changes = 150
@@ -99,15 +83,3 @@ for server_name, server_options in pairs(install_servers) do
         end
     end
 end
-
--- lspconfig.ccls.setup {
---     init_options = {
---         compilationDatabaseDirectory = "build";
---         index = {
---             threads = 0;
---         };
---         clang = {
---             excludeArgs = { "-frounding-math" };
---         };
---     }
--- }

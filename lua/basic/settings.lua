@@ -66,6 +66,7 @@ vim.o.wrap = true
 vim.o.backspace="indent,eol,start"
 -- 设置一行最多100字符
 vim.o.tw = 100
+vim.o.colorcolumn = 100
 
 vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h14"
 vim.o.cursorline = true

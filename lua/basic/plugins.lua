@@ -229,18 +229,18 @@ packer.startup(
 
             -- 自动代码补全系列插件
             use {
-                "hrsh7th/nvim-cmp",  -- 代码补全核心插件，下面都是增强补全的体验插件
+                "hrsh7th/nvim-cmp", -- 代码补全核心插件，下面都是增强补全的体验插件
                 requires = {
-                    {"onsails/lspkind-nvim"}, -- 为补全添加类似 vscode 的图标
-                    {"hrsh7th/vim-vsnip"}, -- vsnip 引擎，用于获得代码片段支持
-                    {"hrsh7th/cmp-vsnip"}, -- 适用于 vsnip 的代码片段源
-                    {"hrsh7th/cmp-nvim-lsp"}, -- 替换内置 omnifunc，获得更多补全
-                    {"hrsh7th/cmp-path"}, -- 路径补全
-                    {"hrsh7th/cmp-buffer"}, -- 缓冲区补全
-                    {"hrsh7th/cmp-cmdline"}, -- 命令补全
-                    {"f3fora/cmp-spell"}, -- 拼写建议
-                    {"rafamadriz/friendly-snippets"}, -- 提供多种语言的代码片段
-                    {"lukas-reineke/cmp-under-comparator"}, -- 让补全结果的排序更加智能
+                    { "onsails/lspkind-nvim" }, -- 为补全添加类似 vscode 的图标
+                    { "hrsh7th/vim-vsnip" }, -- vsnip 引擎，用于获得代码片段支持
+                    { "hrsh7th/cmp-vsnip" }, -- 适用于 vsnip 的代码片段源
+                    { "hrsh7th/cmp-nvim-lsp" }, -- 替换内置 omnifunc，获得更多补全
+                    { "hrsh7th/cmp-path" }, -- 路径补全
+                    { "hrsh7th/cmp-buffer" }, -- 缓冲区补全
+                    { "hrsh7th/cmp-cmdline" }, -- 命令补全
+                    { "f3fora/cmp-spell" }, -- 拼写建议
+                    { "rafamadriz/friendly-snippets" }, -- 提供多种语言的代码片段
+                    { "lukas-reineke/cmp-under-comparator" }, -- 让补全结果的排序更加智能
                     --{"tzachar/cmp-tabnine", run = "./install.sh"} -- tabnine 源,提供基于 AI 的智能补全
                 },
                 config = function()
@@ -251,7 +251,7 @@ packer.startup(
             -- 语法高亮
             use {
                 "nvim-treesitter/nvim-treesitter",
-                run = {":TSupdate"},
+                run = { ":TSupdate" },
                 requires = {
                     "p00f/nvim-ts-rainbow" -- 彩虹括号
                 },
@@ -339,7 +339,7 @@ packer.startup(
                     require('conf.neorg')
                 end
             }
-            ]]--
+            ]] --
 
             -- 高亮当前行
             use {
@@ -347,6 +347,23 @@ packer.startup(
                 config = function()
                     require("conf.nvim-cursorline")
                 end
+            }
+
+            -- 多光标模式
+            use {
+                "mg979/vim-visual-multi",
+                config = function()
+                    require("conf.vim-visual-multi")
+                end
+            }
+
+            -- 最大字符数竖线
+            use {
+                "lukas-reineke/virt-column.nvim",
+                config = function()
+                    require("conf.virt-column")
+                end,
+                ft = {"cpp"}
             }
 
             -- 安装其它插件

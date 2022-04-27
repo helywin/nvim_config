@@ -11,7 +11,7 @@ require("nvim-tree").setup(
             -- 隐藏顶部的根目录显示
             hide_root_folder = false,
             -- 自动调整大小
-            auto_resize = true,
+            -- auto_resize = true,
             -- 按键绑定
             mappings = {
                 custom_only = false,
