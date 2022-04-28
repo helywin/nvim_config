@@ -1,3 +1,1 @@
-return {
-    cmd = {"cmake-language-server"}
-}
+return {}

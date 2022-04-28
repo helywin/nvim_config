@@ -155,3 +155,5 @@ cmp.setup.cmdline(
         )
     }
 )
+
+require("conf.vim-vsnip")

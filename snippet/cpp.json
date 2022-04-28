@@ -1,0 +1,90 @@
+{
+    "HeaderGuard": {
+        "prefix": ["header_guard"],
+        "body": [
+            "#ifndef $1",
+            "#define $1",
+            "$0",
+            "#endif // $1"
+        ],
+        "description": "Header guard macro."
+    },
+    "Class": {
+        "prefix": ["class"],
+        "body": [
+          "/**",
+          " * @author ${VIM:\\$USER}",
+          " * @breif ",
+          " */",
+          "class $1",
+          "{",
+          "public:",
+          "\t$1();",
+          "};"
+        ],
+        "description": "Class definition template."
+    },
+    "Main": {
+        "prefix": ["main"],
+        "body": [
+            "int main(int argc, char *argv[])",
+            "{",
+            "$0",
+            "\treturn 0;",
+            "}"
+        ],
+        "description": "Main function."
+    },
+    "QtHeader": {
+        "prefix": ["qt_header"],
+        "body": [
+            "#include <$2>",
+            "",
+            "class $1Private;",
+            "",
+            "/**",
+            " * @author ${VIM:\\$USER}",
+            " * @breif ",
+            " */",
+            "class $1 : public $2",
+            "{",
+            "Q_OBJECT",
+            "public:",
+            "\texplicit $1(QWidget *parent = nullptr);",
+            "\t~$1() override;",
+            "",
+            "private:",
+            "\tQ_DISABLE_COPY($1)",
+            "\tQ_DECLARE_PRIVATE($1)",
+            "\tQScopedPointer<$1Private> d_ptr;",
+            "};"
+        ]
+    },
+    "QtClass": {
+        "prefix": ["qt_class"],
+        "body": [
+            "#include \"$1.hpp\"",
+            "",
+            "",
+            "class $1Private",
+            "{",
+            "public:",
+            "\tQ_DECLARE_PUBLIC($1)",
+            "\t$1 *q_ptr;",
+            "",
+            "\texplicit $1Private($1 *p);",
+            "};",
+            "",
+            "$1Private::$1Private($1 *p) :",
+            "\tq_ptr(p)",
+            "{}",
+            "",
+            "$1::$1(QWidget *parent) : ",
+            "\t$2(parent),",
+            "\td_ptr(new $1Private(this))",
+            "{}",
+            "",
+            "$1::~$1() = default"
+        ]
+    }
+}

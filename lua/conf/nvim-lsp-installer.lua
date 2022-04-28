@@ -1,10 +1,19 @@
 -- https://github.com/williamboman/nvim-lsp-installer
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 local lsp_installer_servers = require("nvim-lsp-installer.servers")
 
 -- WARN: 手动书写 LSP 配置文件
 -- 名称：https://github.com/williamboman/nvim-lsp-installer#available-lsps
 -- 配置：https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
+-- 使用 cmp_nvim_lsp 代替内置 omnifunc，获得更强的补全体验
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+require'lspconfig'.jsonls.setup {
+  capabilities = capabilities,
+}
 
 local install_servers = {
     -- 语言服务器名称：配置选项
@@ -23,10 +32,6 @@ local install_servers = {
     -- sqls = require("lsp.sqls"),
     -- vuels = require("lsp.vuels")
 }
-
--- local manual_servers = {
---     ccls = require("lsp.ccls")
--- }
 
 local opts = { noremap = true, silent = true }
 -- 这里是 LSP 服务启动后的按键加载
@@ -51,9 +56,6 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
--- 使用 cmp_nvim_lsp 代替内置 omnifunc，获得更强的补全体验
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- 自动安装或启动 LanguageServers
 for server_name, server_options in pairs(install_servers) do
@@ -65,8 +67,6 @@ for server_name, server_options in pairs(install_servers) do
             function()
                 -- keybind
                 server_options.on_attach = on_attach
-                --代替内置 omnifunc
-                server_options.capabilities = capabilities
 
                 -- options config
                 server_options.flags = {
