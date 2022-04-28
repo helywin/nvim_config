@@ -16,13 +16,12 @@ require("nvim-tree").setup(
             mappings = {
                 custom_only = false,
                 list = {
-                    
                 },
             }
         },
         diagnostics = {
             -- 是否启用文件诊断信息
-            enable = true,
+            enable = false,
             icons = {
                 hint = "",
                 info = "",
@@ -32,7 +31,7 @@ require("nvim-tree").setup(
         },
         git = {
             -- 是否启用 git 信息
-            enable = true,
+            enable = false,
             ignore = true,
             timeout = 500
         },
@@ -40,31 +39,31 @@ require("nvim-tree").setup(
 )
 
 -- 默认图标，可自行修改
-vim.g.nvim_tree_icons = {
-    default = " ",
-    symlink = " ",
-    git = {
-        unstaged = "",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "",
-        deleted = "",
-        ignored = ""
-    },
-    folder = {
-        -- arrow_open = "╰─▸",
-        -- arrow_closed = "├─▸",
-        arrow_open = "",
-        arrow_closed = "",
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = ""
-    }
-}
+-- vim.g.nvim_tree_icons = {
+--     default = " ",
+--     symlink = " ",
+--     -- git = {
+--     --     unstaged = "",
+--     --     staged = "✓",
+--     --     unmerged = "",
+--     --     renamed = "➜",
+--     --     untracked = "*",
+--     --     deleted = "",
+--     --     ignored = ""
+--     -- },
+--     folder = {
+--         -- arrow_open = "╰─▸",
+--         -- arrow_closed = "├─▸",
+--         arrow_open = "",
+--         arrow_closed = "",
+--         default = "",
+--         open = "",
+--         empty = "",
+--         empty_open = "",
+--         symlink = "",
+--         symlink_open = ""
+--     }
+-- }
 
 -- 目录后加上反斜杠 /
 vim.g.nvim_tree_add_trailing = 1

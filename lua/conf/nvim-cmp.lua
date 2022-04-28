@@ -34,10 +34,10 @@ cmp.setup(
         -- 指定补全源（安装了补全源插件就在这里指定）
         sources = cmp.config.sources(
             {
-                {name = "vsnip"},
                 {name = "nvim_lsp"},
-                {name = "path"},
                 {name = "buffer"},
+                {name = "vsnip"},
+                {name = "path"},
                 {name = "cmdline"},
                 {name = "spell"},
                 --{name = "cmp_tabnine"}

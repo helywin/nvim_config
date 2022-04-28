@@ -14,5 +14,5 @@ vim.api.nvim_set_keymap('i', '<C-k>', '<up>', { noremap = true })
 -- shift tab绑定按键
 vim.api.nvim_set_keymap('i', '<S-Tab>', '<C-d>', { noremap=true })
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap=true })
--- shift enter绑定
+-- shift enter绑定 (仅在带GUI的终端上能映射，比如nvim-qt，终端模拟器需要自己修改映射)
 vim.api.nvim_set_keymap('i', '<S-CR>', '<End><CR>', { noremap=true })
