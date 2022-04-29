@@ -36,4 +36,4 @@ onedarkpro.setup({
         window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
     }
 })
-onedarkpro.load()
+-- onedarkpro.load()

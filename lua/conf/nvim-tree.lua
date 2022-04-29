@@ -38,35 +38,48 @@ require("nvim-tree").setup(
     }
 )
 
+-- 禁用一些图标，不然文字放不下了
+vim.g.nvim_tree_show_icons = {
+    git = 0,
+    folders = 1,
+    files = 0,
+    folder_arrows = 1,
+    symlink = 0
+}
+
 -- 默认图标，可自行修改
--- vim.g.nvim_tree_icons = {
---     default = " ",
---     symlink = " ",
---     -- git = {
---     --     unstaged = "",
---     --     staged = "✓",
---     --     unmerged = "",
---     --     renamed = "➜",
---     --     untracked = "*",
---     --     deleted = "",
---     --     ignored = ""
---     -- },
---     folder = {
---         -- arrow_open = "╰─▸",
---         -- arrow_closed = "├─▸",
---         arrow_open = "",
---         arrow_closed = "",
---         default = "",
---         open = "",
---         empty = "",
---         empty_open = "",
---         symlink = "",
---         symlink_open = ""
---     }
--- }
+vim.g.nvim_tree_icons = {
+    default = " ",
+    -- symlink = " ",
+    symlink = "",
+    git = {
+        unstaged = "",
+        staged = "✓",
+        unmerged = "",
+        renamed = "➜",
+        untracked = "*",
+        deleted = "",
+        ignored = ""
+    },
+    folder = {
+        -- arrow_open = "╰─▸",
+        -- arrow_closed = "├─▸",
+        arrow_open = "",
+        arrow_closed = "",
+        default = "",
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = "",
+        symlink_open = ""
+    }
+}
 
 -- 目录后加上反斜杠 /
 vim.g.nvim_tree_add_trailing = 1
+
+--
+vim.g.nvim_tree_icon_padding = ''
 
 -- 按 leader 1 打开文件树
 vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<CR>", { noremap = true })

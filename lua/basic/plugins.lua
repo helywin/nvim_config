@@ -35,6 +35,14 @@ packer.startup(
                 end
             }
 
+            -- tokyo night 主题
+            use {
+                "folke/tokyonight.nvim",
+                config = function()
+                    require("conf.tokyonight")
+                end
+            }
+
             -- windline状态栏插件
             use {
                 "windwp/windline.nvim",
@@ -279,35 +287,35 @@ packer.startup(
                 end
             }
 
-            -- -- 代码调试基础插件
-            -- use {
-            --     "mfussenegger/nvim-dap",
-            --     config = function()
-            --         require("conf.nvim-dap")
-            --     end
-            -- }
+             -- 代码调试基础插件
+             use {
+                 "mfussenegger/nvim-dap",
+                 config = function()
+                     require("conf.nvim-dap")
+                 end
+             }
 
-            -- -- 为代码调试提供内联文本
-            -- use {
-            --     "theHamsta/nvim-dap-virtual-text",
-            --     requires = {
-            --         "mfussenegger/nvim-dap"
-            --     },
-            --     config = function()
-            --         require("conf.nvim-dap-virtual-text")
-            --     end
-            -- }
+             -- 为代码调试提供内联文本
+             use {
+                 "theHamsta/nvim-dap-virtual-text",
+                 requires = {
+                     "mfussenegger/nvim-dap"
+                 },
+                 config = function()
+                     require("conf.nvim-dap-virtual-text")
+                 end
+             }
 
-            -- -- 为代码调试提供 UI 界面
-            -- use {
-            --     "rcarriga/nvim-dap-ui",
-            --     requires = {
-            --         "mfussenegger/nvim-dap"
-            --     },
-            --     config = function()
-            --         require("conf.nvim-dap-ui")
-            --     end
-            -- }
+             -- 为代码调试提供 UI 界面
+             use {
+                 "rcarriga/nvim-dap-ui",
+                 requires = {
+                     "mfussenegger/nvim-dap"
+                 },
+                 config = function()
+                     require("conf.nvim-dap-ui")
+                 end
+             }
 
             -- 启动页面插件
             use {
@@ -364,6 +372,22 @@ packer.startup(
                     require("conf.virt-column")
                 end,
                 ft = {"cpp"}
+            }
+
+            --CMake插件
+            use {
+                "Shatur/neovim-cmake",
+                config = function ()
+                    require("conf.neovim-cmake")
+                end
+            }
+
+            -- 弹窗输入插件
+            use {
+                'stevearc/dressing.nvim',
+                config = function ()
+                    require("conf.dressing")
+                end
             }
 
             -- 安装其它插件

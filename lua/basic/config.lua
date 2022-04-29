@@ -12,3 +12,4 @@ vim.cmd("autocmd InsertLeave * call FcitxToggleInput()")
 -- 启动vim时关闭小企鹅输入法，不然每次都要切换一下
 vim.cmd("autocmd VimEnter * call FcitxToggleInput()")
 vim.g.vsnip_snippet_dir = "~/.config/nvim/snippet"
+vim.cmd[[colorscheme onedarkpro]]
