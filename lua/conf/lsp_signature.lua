@@ -1,20 +1,29 @@
 -- https://github.com/ray-x/lsp_signature.nvim
 
-require("lsp_signature").setup(
-    {
-        bind = true,
-        -- 边框样式
-        handler_opts = {
-            -- double、rounded、single、shadow、none
-            border = "rounded"
-        },
-        -- 自动触发
-        floating_window = false,
-        -- 绑定按键
-        toggle_key = "<C-p>",
-        -- 虚拟提示关闭
-        hint_enable = false,
-        -- 正在输入的参数将如何突出显示
-        hi_parameter = "LspSignatureActiveParameter"
-    }
-)
+local present, lsp_signature = pcall(require, "lsp_signature")
+
+if not present then
+    return
+end
+
+local options = {
+    bind = true,
+    doc_lines = 0,
+    floating_window = false,
+    fix_pos = true,
+    hint_enable = false,
+    hint_prefix = " ",
+    hint_scheme = "String",
+    --hi_parameter = "Search",
+    hi_parameter = "LspSignatureActiveParameter",
+    max_height = 22,
+    max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+    handler_opts = {
+        border = "rounded", -- double, single, shadow, none
+    },
+    toggle_key = "<C-p>",
+    zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
+    padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
+}
+
+lsp_signature.setup(options)
