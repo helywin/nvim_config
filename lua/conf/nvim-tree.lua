@@ -1,42 +1,59 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 
-require("nvim-tree").setup(
-    {
-        -- 视图
-        view = {
-            -- 宽度
-            width = 30,
-            -- 高度
-            height = 30,
-            -- 隐藏顶部的根目录显示
-            hide_root_folder = false,
-            -- 自动调整大小
-            -- auto_resize = true,
-            -- 按键绑定
-            mappings = {
-                custom_only = false,
-                list = {
-                },
-            }
-        },
-        diagnostics = {
-            -- 是否启用文件诊断信息
-            enable = false,
-            icons = {
-                hint = "",
-                info = "",
-                warning = "",
-                error = ""
-            }
-        },
-        git = {
-            -- 是否启用 git 信息
-            enable = false,
-            ignore = true,
-            timeout = 500
-        },
-    }
-)
+local present, nvimtree = pcall(require, "nvim-tree")
+
+if not present then
+    return
+end
+
+local options =
+{
+    -- 视图
+    view = {
+        -- 宽度
+        width = 30,
+        -- 高度
+        height = 30,
+        -- 隐藏顶部的根目录显示
+        hide_root_folder = false,
+        -- 自动调整大小
+        -- auto_resize = true,
+        -- 按键绑定
+        mappings = {
+            custom_only = false,
+            list = {
+            },
+        }
+    },
+    diagnostics = {
+        -- 是否启用文件诊断信息
+        enable = false,
+        icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = ""
+        }
+    },
+    git = {
+        -- 是否启用 git 信息
+        enable = false,
+        ignore = true,
+        timeout = 500
+    },
+    disable_netrw = true,
+    hijack_netrw = true,
+    ignore_ft_on_setup = { "dashboard" },
+    open_on_tab = false,
+    hijack_cursor = true,
+    hijack_unnamed_buffer_when_opening = false,
+    update_cwd = true,
+    update_focused_file = {
+        enable = true,
+        update_cwd = false,
+    },
+
+}
 
 -- 禁用一些图标，不然文字放不下了
 vim.g.nvim_tree_show_icons = {
@@ -46,6 +63,10 @@ vim.g.nvim_tree_show_icons = {
     folder_arrows = 1,
     symlink = 0
 }
+
+-- 根目录只显示一个文件夹名称，不然放不下
+vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
+
 
 -- 默认图标，可自行修改
 vim.g.nvim_tree_icons = {
@@ -87,6 +108,8 @@ vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<CR>", { noremap =
 vim.api.nvim_set_keymap("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>", { noremap = true })
 -- 按 leader c 关闭
 -- vim.api.nvim_set_keymap("n", "<leader>c", "<cmd>NvimTreeClose<CR>", { noremap = true })
+
+nvimtree.setup(options)
 
 -- 默认按键
 -- o     ：打开目录或文件
