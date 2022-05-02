@@ -5,10 +5,10 @@ return {
  -- capabilities = capabilities,
   cmd = {
         "clangd",
-        "-update-debounce=0",
+        -- "-update-debounce=0",
         "-include-ineligible-results",
-        "-keep-asts=10",
-        "-recovery-ast",
+        -- "-keep-asts=10",
+        -- "-recovery-ast",
         "-ranking-model=heuristics",
         "-header-extensions=hpp;h;cuh;",
         --"--background-index",

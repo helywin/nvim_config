@@ -16,6 +16,13 @@ packer.startup(
             "yianwillis/vimcdoc"
         }
 
+        use {
+            "NvChad/nvim-base16.lua",
+            config = function()
+                require("colors").init()
+            end
+        }
+
         -- 树结构插件
         use {
             "kyazdani42/nvim-tree.lua",
@@ -45,9 +52,9 @@ packer.startup(
 
         -- windline状态栏插件
         use {
-            "windwp/windline.nvim",
+            "feline-nvim/feline.nvim",
             config = function()
-                require("conf.windline")
+                require("conf.feline")
             end
         }
 
@@ -391,6 +398,14 @@ packer.startup(
             'stevearc/dressing.nvim',
             config = function()
                 require("conf.dressing")
+            end
+        }
+
+        -- better escape
+        use {
+            'jdhao/better-escape.vim',
+            config = function()
+                require("conf.better-escape")
             end
         }
 
