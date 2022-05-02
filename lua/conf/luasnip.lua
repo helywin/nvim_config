@@ -10,4 +10,5 @@ luasnip.config.set_config {
 }
 
 -- add snippet path here!
-require("luasnip/loaders/from_vscode").load { paths = {./snippet} }
+require("luasnip.loaders.from_vscode").load({ paths = {"./snippet"} })
+require("luasnip.loaders.from_vscode").lazy_load()
