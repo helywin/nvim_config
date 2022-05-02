@@ -28,11 +28,14 @@ map("n", "<C-k>", "<cmd> :bprev<CR>")
 map("n", "<C-j>", "<cmd> :bnext<CR>")
 -- normal模式下空格选中单个词语
 map("n", "<Space>", "viw")
--- shift tab绑定按键
+-- shift tab绑定按键+
 map('i', '<S-Tab>', '<C-d>')
 map('n', '<S-Tab>', '<<')
 -- shift enter绑定 (仅在带GUI的终端上能映射，比如nvim-qt，终端模拟器需要自己修改映射)
 map('i', '<S-CR>', '<End><CR>')
 -- jk从终端退出
 map('t', "jk", "<C-\\><C-n>")
+-- 移动行代码
+map('n', "<A-j>", ":m .+1<CR>==")
+map('n', "<A-k>", ":m .-2<CR>==")
 

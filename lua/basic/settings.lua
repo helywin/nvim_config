@@ -71,7 +71,7 @@ opt.backspace="indent,eol,start"
 opt.tw = 100
 --opt.colorcolumn = 100
 
-opt.guifont = "CaskaydiaCove Nerd Font Mono:h14"
+opt.guifont = "CaskaydiaCove Nerd Font Mono:h12"
 opt.cursorline = true
 -- cursorline
 opt.cul = true

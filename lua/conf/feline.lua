@@ -246,7 +246,7 @@ local mode_colors = {
     ["t"] = { "TERMINAL", colors.green },
     ["v"] = { "VISUAL", colors.cyan },
     ["V"] = { "V-LINE", colors.cyan },
-    [""] = { "V-BLOCK", colors.cyan },
+    [string.char(22)] = { "V-BLOCK", colors.cyan },
     ["R"] = { "REPLACE", colors.orange },
     ["Rv"] = { "V-REPLACE", colors.orange },
     ["s"] = { "SELECT", colors.nord_blue },
@@ -261,9 +261,28 @@ local mode_colors = {
     ["!"] = { "SHELL", colors.green },
 }
 
+local get_mode_colors = function()
+    local mode = vim.fn.mode()
+    if mode_colors[mode] then
+        return mode_colors[mode][2]
+    else
+        print("len".. string.len(mode) .. " content" .. string.byte(mode))
+        return colors.cyan
+    end
+end
+
+local get_mode_string = function ()
+    local mode = vim.fn.mode()
+    if mode_colors[mode] then
+        return mode_colors[mode][1]
+    else
+        return tostring(mode)
+    end
+end
+
 local chad_mode_hl = function()
     return {
-        fg = mode_colors[vim.fn.mode()][2],
+        fg = get_mode_colors(),
         bg = colors.one_bg,
     }
 end
@@ -281,7 +300,7 @@ local empty_spaceColored = {
     provider = separator_style.left,
     hl = function()
         return {
-            fg = mode_colors[vim.fn.mode()][2],
+            fg = get_mode_colors(),
             bg = colors.one_bg2,
         }
     end,
@@ -292,14 +311,14 @@ local mode_icon = {
     hl = function()
         return {
             fg = colors.statusline_bg,
-            bg = mode_colors[vim.fn.mode()][2],
+            bg = get_mode_colors(),
         }
     end,
 }
 
 local empty_space2 = {
     provider = function()
-        return " " .. mode_colors[vim.fn.mode()][1] .. " "
+        return " " .. get_mode_string() .. " "
     end,
     hl = chad_mode_hl,
 }
