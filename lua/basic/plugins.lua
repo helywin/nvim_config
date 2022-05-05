@@ -50,6 +50,7 @@ packer.startup(
 
             -- one dark主题
             use {
+                -- "navarasu/onedark.nvim",
                 "olimorris/onedarkpro.nvim",
                 config = function()
                     require("conf.onedarkpro")
