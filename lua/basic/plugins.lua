@@ -18,6 +18,7 @@ packer.startup(
 
             use {
                 "NvChad/nvim-base16.lua",
+                commit = "af112494a5276e939e68dfdaf907df91793a9583",
                 config = function()
                     require("colors").init()
                 end
