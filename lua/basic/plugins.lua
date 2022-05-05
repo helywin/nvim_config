@@ -17,11 +17,24 @@ packer.startup(
             -- }
 
             use {
-                "NvChad/nvim-base16.lua",
-                commit = "af112494a5276e939e68dfdaf907df91793a9583",
+                "NvChad/base46",
+                requires = {
+                    "NvChad/nvim-base16.lua",
+                },
                 config = function()
-                    require("colors").init()
+                    local ok, base16 = pcall(require, "base16")
+
+                    if ok then
+                        base16.load_theme()
+                    end
                 end
+            }
+
+            use {
+                "NvChad/nvterm",
+                config = function()
+                    require("conf.nvterm")
+                end,
             }
 
             -- 树结构插件
@@ -54,9 +67,7 @@ packer.startup(
             -- windline状态栏插件
             use {
                 "feline-nvim/feline.nvim",
-                requires = {
-                    "NvChad/nvim-base16.lua",
-                },
+                after = "base46",
                 config = function()
                     require("conf.feline")
                 end
@@ -76,10 +87,7 @@ packer.startup(
             -- bufferline插件
             use {
                 "akinsho/bufferline.nvim",
-                requires = {
-                    "famiu/bufdelete.nvim",
-                    "NvChad/nvim-base16.lua",
-                },
+                after = "nvim-web-devicons",
                 config = function()
                     require("conf.bufferline")
                 end
@@ -327,6 +335,14 @@ packer.startup(
                 },
                 config = function()
                     require("conf.nvim-dap-ui")
+                end
+            }
+
+            use {
+                "kyazdani42/nvim-web-devicons",
+                after = "base46",
+                config = function ()
+                    require("conf.icons")
                 end
             }
 

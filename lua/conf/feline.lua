@@ -4,7 +4,8 @@ if not present then
     return
 end
 
-local colors = require("colors").get()
+local colors = require("base16").get_colors("base_30")
+
 local lsp = require "feline.providers.lsp"
 local lsp_severity = vim.diagnostic.severity
 
@@ -49,7 +50,7 @@ local icon_styles = {
     },
 }
 
-local separator = "default"
+local separator = require("core.utils").load_config().plugins.options.statusline.separator_style
 local separator_style = icon_styles[separator]
 
 -- Initialize the components table
@@ -237,7 +238,6 @@ local lsp_icon = {
     end,
     hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
 }
-
 local mode_colors = {
     ["n"] = { "NORMAL", colors.red },
     ["no"] = { "N-PENDING", colors.red },
@@ -261,28 +261,9 @@ local mode_colors = {
     ["!"] = { "SHELL", colors.green },
 }
 
-local get_mode_colors = function()
-    local mode = vim.fn.mode()
-    if mode_colors[mode] then
-        return mode_colors[mode][2]
-    else
-        print("len".. string.len(mode) .. " content" .. string.byte(mode))
-        return colors.cyan
-    end
-end
-
-local get_mode_string = function ()
-    local mode = vim.fn.mode()
-    if mode_colors[mode] then
-        return mode_colors[mode][1]
-    else
-        return tostring(mode)
-    end
-end
-
 local chad_mode_hl = function()
     return {
-        fg = get_mode_colors(),
+        fg = mode_colors[vim.fn.mode()][2],
         bg = colors.one_bg,
     }
 end
@@ -300,7 +281,7 @@ local empty_spaceColored = {
     provider = separator_style.left,
     hl = function()
         return {
-            fg = get_mode_colors(),
+            fg = mode_colors[vim.fn.mode()][2],
             bg = colors.one_bg2,
         }
     end,
@@ -311,14 +292,14 @@ local mode_icon = {
     hl = function()
         return {
             fg = colors.statusline_bg,
-            bg = get_mode_colors(),
+            bg = mode_colors[vim.fn.mode()][2],
         }
     end,
 }
 
 local empty_space2 = {
     provider = function()
-        return " " .. get_mode_string() .. " "
+        return " " .. mode_colors[vim.fn.mode()][1] .. " "
     end,
     hl = chad_mode_hl,
 }
