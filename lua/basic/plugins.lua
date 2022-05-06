@@ -431,6 +431,11 @@ packer.startup(
                 end
             }
 
+            -- doxygen 插件
+            use {
+                "vim-scripts/DoxygenToolkit.vim"
+            }
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口

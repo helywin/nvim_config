@@ -4,7 +4,7 @@ if not present then
     return
 end
 
-local colors = require("base16").get_colors("base_30")
+local colors = require("base16").get_colors "base_30"
 
 local lsp = require "feline.providers.lsp"
 local lsp_severity = vim.diagnostic.severity
@@ -238,6 +238,7 @@ local lsp_icon = {
     end,
     hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
 }
+
 local mode_colors = {
     ["n"] = { "NORMAL", colors.red },
     ["no"] = { "N-PENDING", colors.red },
@@ -246,12 +247,12 @@ local mode_colors = {
     ["t"] = { "TERMINAL", colors.green },
     ["v"] = { "VISUAL", colors.cyan },
     ["V"] = { "V-LINE", colors.cyan },
-    [string.char(22)] = { "V-BLOCK", colors.cyan },
+    [""] = { "V-BLOCK", colors.cyan },
     ["R"] = { "REPLACE", colors.orange },
     ["Rv"] = { "V-REPLACE", colors.orange },
     ["s"] = { "SELECT", colors.nord_blue },
     ["S"] = { "S-LINE", colors.nord_blue },
-    [""] = { "S-BLOCK", colors.nord_blue },
+    [""] = { "S-BLOCK", colors.nord_blue },
     ["c"] = { "COMMAND", colors.pink },
     ["cv"] = { "COMMAND", colors.pink },
     ["ce"] = { "COMMAND", colors.pink },
