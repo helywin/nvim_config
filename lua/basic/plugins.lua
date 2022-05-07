@@ -436,6 +436,14 @@ packer.startup(
                 "vim-scripts/DoxygenToolkit.vim"
             }
 
+            -- which key插件
+            use {
+                "folke/which-key.nvim",
+                config = function ()
+                    require("conf.which-key")
+                end
+            }
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口

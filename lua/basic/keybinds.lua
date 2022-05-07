@@ -27,7 +27,7 @@ map("n", "<C-l>", "<C-w>l")
 map("n", "<C-k>", "<cmd> :bprev<CR>")
 map("n", "<C-j>", "<cmd> :bnext<CR>")
 -- normal模式下空格选中单个词语
-map("n", "<Space>", "viw")
+-- map("n", "<Space>", "viw")
 -- shift tab绑定按键+
 map('i', '<S-Tab>', '<C-d>')
 map('n', '<S-Tab>', '<<')
