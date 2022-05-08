@@ -72,8 +72,8 @@ pcall(function()
 end)
 
 -- 查找文件
-vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd> :Telescope find_files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd> :Telescope git_files<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd> :Telescope find_files<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd> :Telescope git_files<CR>", { noremap = true })
 --[[
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<CR>", vim.keybinds.opts)
 -- 查找文字

@@ -39,3 +39,45 @@ map('t', "==", "<C-\\><C-n>")
 map('n', "<A-j>", ":m .+1<CR>==")
 map('n', "<A-k>", ":m .-2<CR>==")
 
+-- map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>')
+-- map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+-- map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+-- map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
+
+-- Comment
+map("n", "<Leader>/", "<cmd> :lua require('Comment.api').toggle_current_linewise()<CR>")
+map("v", "<Leader>/", "<esc><cmd> :lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+
+-- LazyGit
+map('n', "<Leader>lg", "<cmd>LazyGit<CR>")
+
+-- hlslens
+map("n", "n", "<Cmd>execute('normal!'.v:count1.'n')<CR><Cmd>lua require('hlslens').start()<CR>")
+map("n", "N", "<Cmd>execute('normal!'.v:count1.'N')<CR><Cmd>lua require('hlslens').start()<CR>")
+map("n", "*", "*<Cmd>lua require('hlslens').start()<CR>")
+map("n", "#", "#<Cmd>lua require('hlslens').start()<CR>")
+map("n", "g*", "g*<Cmd>lua require('hlslens').start()<CR>")
+map("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>")
+
+
+-- 按 leader e 打开文件树
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+-- 按 leader fc 在文件树中找到当前以打开文件的位置
+map("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>")
+
+-- Telescope
+map("n", "<leader>ff", "<cmd> :Telescope find_files<CR>")
+map("n", "<leader>fg", "<cmd> :Telescope git_files<CR>")
+map("n", "<leader>fo", "<cmd> :Telescope oldfiles<CR>")
+map("n", "<leader>fl", "<cmd> :Telescope live_grep<CR>")
+--[[
+vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<CR>", vim.keybinds.opts)
+-- 查找文字
+-- 查找特殊符号
+vim.keybinds.gmap("n", "<leader>fb", "<cmd>Telescope buffers theme=dropdown<CR>", vim.keybinds.opts)
+-- 查找帮助文档
+vim.keybinds.gmap("n", "<leader>fh", "<cmd>Telescope help_tags theme=dropdown<CR>", vim.keybinds.opts)
+-- 查找最近打开的文件
+-- 查找 marks 标记
+vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", vim.keybinds.opts)
+]] --

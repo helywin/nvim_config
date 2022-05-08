@@ -40,6 +40,4 @@ comment.setup(options)
 
 local map = require("core.utils").map
 
-map("n", "<Leader>/", "<cmd> :lua require('Comment.api').toggle_current_linewise()<CR>")
-map("v", "<Leader>/", "<esc><cmd> :lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
 

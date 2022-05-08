@@ -8,14 +8,35 @@ local options = {
 }
 
 which_key.register({
-  f = {
-    name = "file", -- optional group name
-    f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
-    -- ["1"] = "which_key_ignore",  -- special label to hide it in the popup
-    -- b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
-  },
-  ["/"] = "Comment",
-  ["1"] = "Explorer",  -- special label to hide it in the popup
-}, { prefix = "<leader>" })
+    ["ff"] = "Find File",
+    ["fg"] = "Git File",
+    ["fl"] = "Live Grep",
+    ["fo"] = "Old File",
+    ["fb"] = "Search In File",
+    ["/"] = "Comment",
+    ["e"] = "Explorer",
+    ["fc"] = "Explorer Find File",
+
+    -- lsp
+    ["wa"] = "Add Workspace Folder",
+    ["wr"] = "Remove Workspace Folder",
+    ["wl"] = "List Workspace Folder",
+    ["D"] = "Type Definition",
+    ["rn"] = "Rename",
+    ["ca"] = "Code Action",
+    ["gr"] = "References",
+    ["f"] = "Formatting",
+}, { prefix = "<leader>", mode = "n" })
+
+which_key.register({
+    ["/"] = "Comment",
+}, { prefix = "<leader>", mode = "v" })
+
+which_key.register({
+    ["gD"] = "Declaration",
+    ["gd"] = "Definition",
+    ["K"] = "Hover",
+    ["gi"] = "Implementation",
+}, { prefix = "", mode = "n" })
 
 which_key.setup(options)

@@ -102,12 +102,6 @@ vim.g.nvim_tree_add_trailing = 1
 --
 vim.g.nvim_tree_icon_padding = ''
 
--- 按 leader 1 打开文件树
-vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<CR>", { noremap = true })
--- 按 leader fc 在文件树中找到当前以打开文件的位置
-vim.api.nvim_set_keymap("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>", { noremap = true })
--- 按 leader c 关闭
--- vim.api.nvim_set_keymap("n", "<leader>c", "<cmd>NvimTreeClose<CR>", { noremap = true })
 
 nvimtree.setup(options)
 
