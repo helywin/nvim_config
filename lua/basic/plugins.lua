@@ -444,6 +444,13 @@ packer.startup(
                 end
             }
 
+            use {
+                "RRethy/vim-illuminate",
+                config = function ()
+                  require("conf.vim-illuminate")
+                end
+            }
+
             -- 安装其它插件
         end,
         -- 使用浮动窗口
