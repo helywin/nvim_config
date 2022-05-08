@@ -6,21 +6,56 @@
 local dap = require("dap")
 
 -- 设置断点样式
-vim.fn.sign_define("DapBreakpoint", {text = "⊚", texthl = "TodoFgFIX", linehl = "", numhl = ""})
+vim.fn.sign_define("DapBreakpoint", { text = "⊚", texthl = "TodoFgFIX", linehl = "", numhl = "" })
 
--- 加载调试器配置
-local dap_config = {
-    -- python = require("dap.python"),
-    -- go = require("dap.go")
-    cppdbg = require("dap.cppdbg")
+-- -- 加载调试器配置
+-- local dap_config = {
+--     -- python = require("dap.python"),
+--     -- go = require("dap.go")
+--     cppdbg = require("dap.cppdbg")
+-- }
+--
+-- -- 设置调试器
+-- for dap_name, dap_options in pairs(dap_config) do
+--     dap.adapters[dap_name] = dap_options.adapters
+--     dap.configurations[dap_name] = dap_options.configurations
+-- end
+
+dap.adapters.cppdbg = {
+    id = 'cppdbg',
+    type = 'executable',
+    command = '~/software/extension/debugAdapters/bin/OpenDebugAD7'
 }
 
--- 设置调试器
-for dap_name, dap_options in pairs(dap_config) do
-    dap.adapters[dap_name] = dap_options.adapters
-    dap.configurations[dap_name] = dap_options.configurations
-end
+dap.configurations.cpp = {
+    {
+        name = "Launch file",
+        type = "cppdbg",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = true
+    },
+    {
+        name = "Attach to gdbserver :1234",
+        type = "cppdbg",
+        request = 'launch',
+        MIMode = "gdb",
+        miDebuggerServerAddress = "localhost:1234",
+        miDebuggerPath = "/usr/bin/gdb",
+        cwd = '${workspaceFolder}',
+        program = function ()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', 'file')
+        end
+    }
+}
 
+
+vim.api.nvim_set_keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader><F5>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>", { noremap = true })
 --[[
 -- 打断点
 vim.keybinds.gmap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", vim.keybinds.opts)
