@@ -31,6 +31,7 @@ map("n", "<C-j>", "<cmd>bnext<CR>")
 -- shift tab绑定按键+
 map('i', '<S-Tab>', '<C-d>')
 map('n', '<S-Tab>', '<<')
+map('n', '<Tab>', '>>')
 -- shift enter绑定 (仅在带GUI的终端上能映射，比如nvim-qt，终端模拟器需要自己修改映射)
 map('i', '<S-CR>', '<End><CR>')
 -- jk从终端退出

@@ -224,8 +224,22 @@ options.lsp_progress = {
 }
 options.lsp_icon = {
     provider = function()
-        if next(vim.lsp.buf_get_clients()) ~= nil then
-            return "  " .. vim.lsp.buf_get_clients()[1].name
+        local clients = vim.lsp.get_active_clients()
+        local current_buff = vim.api.nvim_get_current_buf()
+        local lsp_str = nil
+        for _, cli in ipairs(clients) do
+            for k, v in pairs(cli.attached_buffers) do
+                if k == current_buff then
+                    lsp_str = cli.name
+                    break;
+                end
+            end
+            if lsp_str ~= nil then
+                break;
+            end
+        end
+        if lsp_str ~= nil then
+            return "  " .. lsp_str
         else
             return ""
         end
