@@ -24,8 +24,8 @@ map("i", "<C-a>", "<ESC>^i")
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
 -- 缓冲区切换
-map("n", "<C-k>", "<cmd> :bprev<CR>")
-map("n", "<C-j>", "<cmd> :bnext<CR>")
+map("n", "<C-k>", "<cmd>bprev<CR>")
+map("n", "<C-j>", "<cmd>bnext<CR>")
 -- normal模式下空格选中单个词语
 -- map("n", "<Space>", "viw")
 -- shift tab绑定按键+
@@ -45,8 +45,8 @@ map('n', "<A-k>", ":m .-2<CR>==")
 -- map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
 -- Comment
-map("n", "<Leader>/", "<cmd> :lua require('Comment.api').toggle_current_linewise()<CR>")
-map("v", "<Leader>/", "<esc><cmd> :lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+map("n", "<Leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
+map("v", "<Leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
 
 -- LazyGit
 map('n', "<Leader>lg", "<cmd>LazyGit<CR>")
@@ -66,10 +66,10 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 map("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>")
 
 -- Telescope
-map("n", "<leader>ff", "<cmd> :Telescope find_files<CR>")
-map("n", "<leader>fg", "<cmd> :Telescope git_files<CR>")
-map("n", "<leader>fo", "<cmd> :Telescope oldfiles<CR>")
-map("n", "<leader>fl", "<cmd> :Telescope live_grep<CR>")
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
+map("n", "<leader>fg", "<cmd>Telescope git_files<CR>")
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>")
+map("n", "<leader>fl", "<cmd>Telescope live_grep<CR>")
 --[[
 vim.keybinds.gmap("n", "<leader>ff", "<cmd>Telescope find_files theme=dropdown<CR>", vim.keybinds.opts)
 -- 查找文字
@@ -81,3 +81,6 @@ vim.keybinds.gmap("n", "<leader>fh", "<cmd>Telescope help_tags theme=dropdown<CR
 -- 查找 marks 标记
 vim.keybinds.gmap("n", "<leader>fm", "<cmd>Telescope marks theme=dropdown<CR>", vim.keybinds.opts)
 ]] --
+
+map('n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>')
+map('n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>')

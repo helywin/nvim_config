@@ -8,11 +8,16 @@ require("nvim-treesitter.configs").setup(
         -- 同步下载高亮支持
         sync_install = false,
         -- 高亮相关
+        matchup = {
+            enable = false;
+        },
+        autotag = { enable = false },
         highlight = {
             -- 启用高亮支持
             enable = true,
             -- 使用 treesitter 高亮而不是 neovim 内置的高亮
-            additional_vim_regex_highlighting = false
+            additional_vim_regex_highlighting = true,
+            disable = { "latex" },
         },
         -- 范围选择
         incremental_selection = {
@@ -30,7 +35,8 @@ require("nvim-treesitter.configs").setup(
         },
         -- 缩进，关闭
         indent = {
-            enable = false
+            enable = true,
+            disable = { "yaml" },
         },
         -- 彩虹括号，由 nvim-ts-rainbow 插件提供
         rainbow = {
@@ -42,7 +48,16 @@ require("nvim-treesitter.configs").setup(
 
         -- 根据当前上下文定义文件类型，由 nvim-ts-context-commentstring 插件提供
         context_commentstring = {
-            enable = true
+            enable = true,
+            config = {
+                typescript = "// %s",
+                css = "/* %s */",
+                scss = "/* %s */",
+                html = "<!-- %s -->",
+                svelte = "<!-- %s -->",
+                vue = "<!-- %s -->",
+                json = "",
+            }
         }
     }
 )

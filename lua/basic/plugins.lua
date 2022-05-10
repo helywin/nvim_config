@@ -18,14 +18,11 @@ packer.startup(
 
             use {
                 "NvChad/base46",
-                requires = {
-                    "NvChad/nvim-base16.lua",
-                },
                 config = function()
-                    local ok, base16 = pcall(require, "base16")
+                    local ok, base46 = pcall(require, "base46")
 
                     if ok then
-                        base16.load_theme()
+                        base46.load_theme()
                     end
                 end
             }

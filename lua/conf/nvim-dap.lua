@@ -24,7 +24,7 @@ vim.fn.sign_define("DapBreakpoint", { text = "⊚", texthl = "TodoFgFIX", linehl
 dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
-    command = '~/software/extension/debugAdapters/bin/OpenDebugAD7'
+    command = os.getenv("HOME") .. '/software/extension/debugAdapters/bin/OpenDebugAD7'
 }
 
 dap.configurations.cpp = {
