@@ -11,10 +11,6 @@ local lsp_installer_servers = require("nvim-lsp-installer.servers")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-require'lspconfig'.jsonls.setup {
-  capabilities = capabilities,
-}
-
 local install_servers = {
     -- 语言服务器名称：配置选项
     sumneko_lua = require("lsp.sumneko_lua"),
@@ -23,7 +19,8 @@ local install_servers = {
     json = require("lsp.jsonls"),
     -- zeta_note = require("lsp.zeta_note"),
     bash = require("lsp.bashls"),
-    yaml = require("lsp.yamlls")
+    yaml = require("lsp.yamlls"),
+    xml = require("lsp.lemminx")
     -- pyright = require("lsp.pyright"),
     -- tsserver = require("lsp.tsserver"),
     -- html = require("lsp.html"),
@@ -53,7 +50,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>F', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 
@@ -63,6 +60,11 @@ for server_name, server_options in pairs(install_servers) do
     -- 判断服务是否可用
     if server_available then
         -- 判断服务是否准备就绪，若就绪则启动服务
+        if server_name == "sumneko_lua" or
+            server_name == "clangd" or
+            server_name == "jsonls" then
+            server_options.capabilities = capabilities
+        end
         server:on_ready(
             function()
                 -- keybind

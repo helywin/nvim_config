@@ -13,12 +13,18 @@ vim.g.FcitxToggleInput = function()
 end
 
 -- 退出插入模式时禁用小企鹅输入法
-vim.cmd("autocmd InsertLeave * call FcitxToggleInput()")
+vim.cmd("autocmd InsertLeave * silent! call FcitxToggleInput()")
 -- 启动vim时关闭小企鹅输入法，不然每次都要切换一下
-vim.cmd("autocmd VimEnter * call FcitxToggleInput()")
+vim.cmd("autocmd VimEnter * silent! call FcitxToggleInput()")
 vim.g.vsnip_snippet_dir = "~/.config/nvim/snippet"
 vim.cmd[[colorscheme onedarkpro]]
 function _G.dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
 end
+
+vim.filetype.add({
+    pattern = {
+        ["*.launch"] = "launch"
+    }
+})
