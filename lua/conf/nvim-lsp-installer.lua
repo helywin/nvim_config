@@ -18,10 +18,10 @@ local install_servers = {
     cmake = require("lsp.cmake"),
     json = require("lsp.jsonls"),
     -- zeta_note = require("lsp.zeta_note"),
-    bash = require("lsp.bashls"),
-    yaml = require("lsp.yamlls"),
-    xml = require("lsp.lemminx")
-    -- pyright = require("lsp.pyright"),
+    bashls = require("lsp.bashls"),
+    yamlls = require("lsp.yamlls"),
+    lemminx = require("lsp.lemminx"),
+    pyright = require("lsp.pyright"),
     -- tsserver = require("lsp.tsserver"),
     -- html = require("lsp.html"),
     -- cssls = require("lsp.cssls"),
@@ -62,6 +62,7 @@ for server_name, server_options in pairs(install_servers) do
         -- 判断服务是否准备就绪，若就绪则启动服务
         if server_name == "sumneko_lua" or
             server_name == "clangd" or
+            server_name == "pyright" or
             server_name == "jsonls" then
             server_options.capabilities = capabilities
         end

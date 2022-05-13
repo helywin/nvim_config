@@ -22,8 +22,14 @@ local options =
         mappings = {
             custom_only = false,
             list = {
+                { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
+                { key = "h", action = "close_node" },
+                { key = "v", action = "vsplit" },
+                { key = "q", action = "close" },
+                { key = "C", action = "cd" },
             },
-        }
+        },
+        signcolumn = "yes",
     },
     diagnostics = {
         -- 是否启用文件诊断信息
@@ -37,9 +43,9 @@ local options =
     },
     git = {
         -- 是否启用 git 信息
-        enable = false,
-        ignore = true,
-        timeout = 500
+        enable = true,
+        ignore = false,
+        timeout = 200
     },
     disable_netrw = true,
     hijack_netrw = true,
@@ -52,7 +58,6 @@ local options =
         enable = true,
         update_cwd = false,
     },
-
 }
 
 -- 禁用一些图标，不然文字放不下了
@@ -98,8 +103,9 @@ vim.g.nvim_tree_icons = {
 
 -- 目录后加上反斜杠 /
 vim.g.nvim_tree_add_trailing = 1
-
---
+-- 颜色
+vim.g.nvim_tree_git_hl = 1
+-- 图标外边间隔
 vim.g.nvim_tree_icon_padding = ''
 
 

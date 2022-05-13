@@ -34,10 +34,10 @@ require("nvim-treesitter.configs").setup(
             }
         },
         -- 缩进，关闭
-        -- indent = {
-        --     enable = true,
-        --     disable = { "yaml" },
-        -- },
+        indent = {
+            enable = true,
+            disable = { "yaml" },
+        },
         -- 彩虹括号，由 nvim-ts-rainbow 插件提供
         rainbow = {
             enable = true,
