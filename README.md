@@ -1,5 +1,11 @@
-## 说明
+## Intro
 
-大部分参考了知乎[askfiy](https://www.zhihu.com/people/cui-qin-3)的文章进行了配置
+This is my NeoVim config (for version 0.7 and greater).
 
-其他配置参考nvchad
+![screenshot1](assets/2022-05-13_09-09.png)
+
+## Features
+
+## Ref
+
+- [askfiy](https://www.zhihu.com/people/cui-qin-3)
