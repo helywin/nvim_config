@@ -111,4 +111,24 @@ M.load_override = function(default_table, plugin_name)
    return default_table
 end
 
+
+local uv = vim.loop
+M.path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
+M.sys_name = uv.os_uname().version.sys_name;
+
+M.join_paths = function(...)
+    local result = table.concat({...}, M.path_sep)
+    return result
+end
+
+M.is_file = function(path)
+  local stat = uv.fs_stat(path)
+  return stat and stat.type == "file" or false
+end
+
+M.is_directory = function(path)
+  local stat = uv.fs_stat(path)
+  return stat and stat.type == "directory" or false
+end
+
 return M

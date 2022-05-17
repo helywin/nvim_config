@@ -271,15 +271,23 @@ packer.startup(
             end
         }
 
+        use {
+            "L3MON4D3/LuaSnip",
+            config = function()
+                require("conf.luasnip")
+            end
+        }
+
         -- 自动代码补全系列插件
         use {
             "hrsh7th/nvim-cmp", -- 代码补全核心插件，下面都是增强补全的体验插件
             requires = {
                 { "onsails/lspkind-nvim" }, -- 为补全添加类似 vscode 的图标
-                { "hrsh7th/vim-vsnip" },
-                { "hrsh7th/vim-vsnip-integ" },
-                { "hrsh7th/cmp-vsnip" }, -- 适用于 vsnip 的代码片段源
-                -- { "L3MON4D3/LuaSnip" },
+                -- { "hrsh7th/vim-vsnip" },
+                -- { "hrsh7th/vim-vsnip-integ" },
+                -- { "hrsh7th/cmp-vsnip" }, -- 适用于 vsnip 的代码片段源
+                { "L3MON4D3/LuaSnip" },
+                { "saadparwaiz1/cmp_luasnip" },
                 { "hrsh7th/cmp-nvim-lsp" }, -- 替换内置 omnifunc，获得更多补全
                 { "hrsh7th/cmp-path" }, -- 路径补全
                 { "hrsh7th/cmp-buffer" }, -- 缓冲区补全
