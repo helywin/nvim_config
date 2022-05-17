@@ -64,7 +64,7 @@ packer.startup(
         --     end
         -- }
 
-        -- windline状态栏插件
+        -- feline状态栏插件
         use {
             "feline-nvim/feline.nvim",
             after = "base46",
@@ -248,12 +248,12 @@ packer.startup(
         -- }
 
         -- LSP 进度提示
-        use {
-            "j-hui/fidget.nvim",
-            config = function()
-                require("conf.fidget")
-            end
-        }
+        -- use {
+        --     "j-hui/fidget.nvim",
+        --     config = function()
+        --         require("conf.fidget")
+        --     end
+        -- }
 
         -- 插入模式获得函数签名
         use {
@@ -279,7 +279,7 @@ packer.startup(
                 { "hrsh7th/vim-vsnip" },
                 { "hrsh7th/vim-vsnip-integ" },
                 { "hrsh7th/cmp-vsnip" }, -- 适用于 vsnip 的代码片段源
-                { "L3MON4D3/LuaSnip" },
+                -- { "L3MON4D3/LuaSnip" },
                 { "hrsh7th/cmp-nvim-lsp" }, -- 替换内置 omnifunc，获得更多补全
                 { "hrsh7th/cmp-path" }, -- 路径补全
                 { "hrsh7th/cmp-buffer" }, -- 缓冲区补全
@@ -456,6 +456,14 @@ packer.startup(
             "folke/which-key.nvim",
             config = function()
                 require("conf.which-key")
+            end
+        }
+
+        use {
+            "sindrets/diffview.nvim",
+            requires = {'nvim-lua/plenary.nvim'},
+            config = function ()
+                require("conf.diffview")
             end
         }
 

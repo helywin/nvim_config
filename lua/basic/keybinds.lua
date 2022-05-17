@@ -39,6 +39,8 @@ map('t', "==", "<C-\\><C-n>")
 -- 移动行代码
 map('n', "<A-j>", ":m .+1<CR>==")
 map('n', "<A-k>", ":m .-2<CR>==")
+-- 回到当前buffer上一次修改位置
+map('n', "gp", "`.")
 
 -- map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>')
 -- map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
