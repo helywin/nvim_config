@@ -226,7 +226,6 @@ packer.startup(
         -- 自动安装 LSP
         use {
             "williamboman/nvim-lsp-installer",
-            after = { "tami5/lspsaga.nvim" },
             config = function()
                 require("conf.nvim-lsp-installer")
             end

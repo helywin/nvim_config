@@ -34,6 +34,7 @@ local install_servers = {
 local opts = { noremap = true, silent = true }
 -- 这里是 LSP 服务启动后的按键加载
 local on_attach = function(client, bufnr)
+    local present, lspsaga = pcall(require, "lspsaga")
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -52,16 +53,18 @@ local on_attach = function(client, bufnr)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gh', '<cmd>Lspsaga lsp_finder<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', '<cmd>Lspsaga signature_help<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gn', '<cmd>Lspsaga rename<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gd', '<cmd>Lspsaga preview_definition<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cc', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+    if present then
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gh', '<cmd>Lspsaga lsp_finder<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', '<cmd>Lspsaga signature_help<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gn', '<cmd>Lspsaga rename<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>gd', '<cmd>Lspsaga preview_definition<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cc', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+    end
 end
 
 
@@ -79,16 +82,16 @@ for server_name, server_options in pairs(install_servers) do
         -- end
         server:on_ready(
             function()
-                -- keybind
-                server_options.on_attach = on_attach
+            -- keybind
+            server_options.on_attach = on_attach
 
-                -- options config
-                server_options.flags = {
-                    debounce_text_changes = 150
-                }
-                -- 启动服务
-                server:setup(server_options)
-            end
+            -- options config
+            server_options.flags = {
+                debounce_text_changes = 150
+            }
+            -- 启动服务
+            server:setup(server_options)
+        end
         )
         -- 如果服务器没有下载，则通过 notify 插件弹出下载提示
         if not server:is_installed() then
