@@ -11,7 +11,7 @@ map("v", "p", "p:let @+=@0<CR>")
 -- map("", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 
 -- ESC消除高亮
-map("n", "<ESC>", "<cmd> :noh <CR>")
+map("n", "<ESC>", "<cmd>noh<CR>")
 -- 插入模式移动光标
 map("i", "<C-h>", "<Left>")
 map("i", "<C-l>", "<Right>")
@@ -31,7 +31,8 @@ map("n", "<C-j>", "<cmd>bnext<CR>")
 -- shift tab绑定按键+
 map('i', '<S-Tab>', '<C-d>')
 map('n', '<S-Tab>', '<<')
-map('n', '<Tab>', '>>')
+-- WARN:重映射<Tab>会使得<C-i>跳转功能失效!
+-- map('n', '<Tab>', '>>')
 -- shift enter绑定 (仅在带GUI的终端上能映射，比如nvim-qt，终端模拟器需要自己修改映射)
 map('i', '<S-CR>', '<End><CR>')
 -- jk从终端退出

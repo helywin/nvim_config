@@ -1,6 +1,12 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 -- https://github.com/p00f/nvim-ts-rainbow
 
+local present, treesitter = pcall(require, "nvim-treesitter")
+
+if not present then
+    return
+end
+
 require("nvim-treesitter.configs").setup(
     {
         -- 安装的高亮支持来源

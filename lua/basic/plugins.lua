@@ -215,19 +215,20 @@ packer.startup(
             end
         }
 
-        -- 自动安装 LSP
-        use {
-            "williamboman/nvim-lsp-installer",
-            config = function()
-                require("conf.nvim-lsp-installer")
-            end
-        }
-
         -- LSP UI 美化
         use {
             "tami5/lspsaga.nvim",
             config = function()
                 require("conf.lspsaga")
+            end
+        }
+
+        -- 自动安装 LSP
+        use {
+            "williamboman/nvim-lsp-installer",
+            after = { "tami5/lspsaga.nvim" },
+            config = function()
+                require("conf.nvim-lsp-installer")
             end
         }
 
@@ -472,6 +473,17 @@ packer.startup(
             requires = {'nvim-lua/plenary.nvim'},
             config = function ()
                 require("conf.diffview")
+            end
+        }
+        
+        -- leetcode插件
+        use {
+            "mbledkowski/neuleetcode.vim",
+            config = function ()
+                vim.g.leetcode_china = 1
+                vim.g.leetcode_solution_filetype = 'cpp'
+                vim.g.leetcode_browser = 'chrome'
+                vim.g.leetcode_hide_paid_only = 1
             end
         }
 

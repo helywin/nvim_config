@@ -1,4 +1,11 @@
-require('nvim-cursorline').setup {
+local present, cursorline = pcall(require, "nvim-cursorline")
+
+if not present then
+    return
+end
+
+local options =
+{
     cursorline = {
         enable = true,
         timeout = 1000,
@@ -10,3 +17,5 @@ require('nvim-cursorline').setup {
         hl = { underline = true },
     }
 }
+
+cursorline.setup(options)

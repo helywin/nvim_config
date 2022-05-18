@@ -1,4 +1,7 @@
-local onedarkpro = require("onedarkpro")
+local present, onedarkpro = pcall(require, "onedarkpro")
+if not present then
+    return
+end
 onedarkpro.setup({
     -- Theme can be overwritten with 'onedark' or 'onelight' as a string
     theme = function()
@@ -36,4 +39,4 @@ onedarkpro.setup({
         window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
     }
 })
--- onedarkpro.load()
+onedarkpro.load("onedark")
