@@ -64,9 +64,9 @@ local options =
 vim.g.nvim_tree_show_icons = {
     git = 0,
     folders = 1,
-    files = 0,
+    files = 1,
     folder_arrows = 1,
-    symlink = 0
+    symlink = 1
 }
 
 -- 根目录只显示一个文件夹名称，不然放不下
@@ -88,17 +88,15 @@ vim.g.nvim_tree_icons = {
         ignored = ""
     },
     folder = {
-        -- arrow_open = "╰─▸",
-        -- arrow_closed = "├─▸",
+        default = "",
+        empty = "",
+        empty_open = "",
+        open = "",
+        symlink = "",
+        symlink_open = "",
         arrow_open = "",
         arrow_closed = "",
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = ""
-    }
+     }
 }
 
 -- 目录后加上反斜杠 /
@@ -106,7 +104,7 @@ vim.g.nvim_tree_add_trailing = 1
 -- 颜色
 vim.g.nvim_tree_git_hl = 1
 -- 图标外边间隔
-vim.g.nvim_tree_icon_padding = ''
+vim.g.nvim_tree_icon_padding = ' '
 
 
 nvimtree.setup(options)
