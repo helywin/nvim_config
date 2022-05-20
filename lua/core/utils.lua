@@ -1,114 +1,114 @@
 local M = {}
 
 M.close_buffer = function(force)
-   if vim.bo.buftype == "terminal" then
-      vim.api.nvim_win_hide(0)
-      return
-   end
+    if vim.bo.buftype == "terminal" then
+        vim.api.nvim_win_hide(0)
+        return
+    end
 
-   local fileExists = vim.fn.filereadable(vim.fn.expand "%p")
-   local modified = vim.api.nvim_buf_get_option(vim.fn.bufnr(), "modified")
+    local fileExists = vim.fn.filereadable(vim.fn.expand "%p")
+    local modified = vim.api.nvim_buf_get_option(vim.fn.bufnr(), "modified")
 
-   -- if file doesnt exist & its modified
-   if fileExists == 0 and modified then
-      print "no file name? add it now!"
-      return
-   end
+    -- if file doesnt exist & its modified
+    if fileExists == 0 and modified then
+        print "no file name? add it now!"
+        return
+    end
 
-   force = force or not vim.bo.buflisted or vim.bo.buftype == "nofile"
+    force = force or not vim.bo.buflisted or vim.bo.buftype == "nofile"
 
-   -- if not force, change to prev buf and then close current
-   local close_cmd = force and ":bd!" or ":bp | bd" .. vim.fn.bufnr()
-   vim.cmd(close_cmd)
+    -- if not force, change to prev buf and then close current
+    local close_cmd = force and ":bd!" or ":bp | bd" .. vim.fn.bufnr()
+    vim.cmd(close_cmd)
 end
 
 M.load_config = function()
-   local conf = require "core.default_config"
+    local conf = require "core.default_config"
 
-   -- attempt to load and merge a user config
-   local chadrc_exists = vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/custom/chadrc.lua") == 1
-   if chadrc_exists then
-      -- merge user config if it exists and is a table; otherwise display an error
-      local user_config = require "custom.chadrc"
-      if type(user_config) == "table" then
-         conf = vim.tbl_deep_extend("force", conf, user_config)
-      else
-         error "User config (chadrc.lua) *must* return a table!"
-      end
-   end
+    -- attempt to load and merge a user config
+    local chadrc_exists = vim.fn.filereadable(vim.fn.stdpath "config" .. "/lua/custom/chadrc.lua") == 1
+    if chadrc_exists then
+        -- merge user config if it exists and is a table; otherwise display an error
+        local user_config = require "custom.chadrc"
+        if type(user_config) == "table" then
+            conf = vim.tbl_deep_extend("force", conf, user_config)
+        else
+            error "User config (chadrc.lua) *must* return a table!"
+        end
+    end
 
-   return conf
+    return conf
 end
 
 M.map = function(mode, keys, command, opt)
-   local options = { silent = true }
+    local options = { silent = true }
 
-   if opt then
-      options = vim.tbl_extend("force", options, opt)
-   end
+    if opt then
+        options = vim.tbl_extend("force", options, opt)
+    end
 
-   if type(keys) == "table" then
-      for _, keymap in ipairs(keys) do
-         M.map(mode, keymap, command, opt)
-      end
-      return
-   end
+    if type(keys) == "table" then
+        for _, keymap in ipairs(keys) do
+            M.map(mode, keymap, command, opt)
+        end
+        return
+    end
 
-   vim.keymap.set(mode, keys, command, opt)
+    vim.keymap.set(mode, keys, command, opt)
 end
 
 -- load plugin after entering vim ui
 M.packer_lazy_load = function(plugin, timer)
-   if plugin then
-      timer = timer or 0
-      vim.defer_fn(function()
-         require("packer").loader(plugin)
-      end, timer)
-   end
+    if plugin then
+        timer = timer or 0
+        vim.defer_fn(function()
+            require("packer").loader(plugin)
+        end, timer)
+    end
 end
 
 -- remove plugins defined in chadrc
 M.remove_default_plugins = function(plugins)
-   local removals = require("core.utils").load_config().plugins.remove or {}
-   if not vim.tbl_isempty(removals) then
-      for _, plugin in pairs(removals) do
-         plugins[plugin] = nil
-      end
-   end
-   return plugins
+    local removals = require("core.utils").load_config().plugins.remove or {}
+    if not vim.tbl_isempty(removals) then
+        for _, plugin in pairs(removals) do
+            plugins[plugin] = nil
+        end
+    end
+    return plugins
 end
 
 -- merge default/user plugin tables
 
 M.plugin_list = function(default_plugins)
-   local user_plugins = require("core.utils").load_config().plugins.user
-   local plug_override = require("core.default_config").plugins.override
+    local user_plugins = require("core.utils").load_config().plugins.user
+    local plug_override = require("core.default_config").plugins.override
 
-   -- merge default + user plugin table
-   default_plugins = vim.tbl_deep_extend("force", default_plugins, user_plugins)
+    -- merge default + user plugin table
+    default_plugins = vim.tbl_deep_extend("force", default_plugins, user_plugins)
 
-   local final_table = {}
+    local final_table = {}
 
-   for key, _ in pairs(default_plugins) do
-      default_plugins[key][1] = key
+    for key, _ in pairs(default_plugins) do
+        default_plugins[key][1] = key
 
-      final_table[#final_table + 1] = default_plugins[key]
-      plug_override[#plug_override + 1] = default_plugins[key]
-   end
+        final_table[#final_table + 1] = default_plugins[key]
+        plug_override[#plug_override + 1] = default_plugins[key]
+    end
 
-   return final_table
+    return final_table
 end
 
 M.load_override = function(default_table, plugin_name)
-   local user_table = require("core.utils").load_config().plugins.override[plugin_name]
+    local user_table = require("core.utils").load_config().plugins.override[plugin_name]
 
-   if type(user_table) == "table" then
-      default_table = vim.tbl_deep_extend("force", default_table, user_table)
-   else
-      default_table = default_table
-   end
+    if type(user_table) == "table" then
+        default_table = vim.tbl_deep_extend("force", default_table, user_table)
+    else
+        default_table = default_table
+    end
 
-   return default_table
+    return default_table
 end
 
 
@@ -117,18 +117,44 @@ M.path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
 M.sys_name = uv.os_uname().version.sys_name;
 
 M.join_paths = function(...)
-    local result = table.concat({...}, M.path_sep)
+    local result = table.concat({ ... }, M.path_sep)
     return result
 end
 
 M.is_file = function(path)
-  local stat = uv.fs_stat(path)
-  return stat and stat.type == "file" or false
+    local stat = uv.fs_stat(path)
+    return stat and stat.type == "file" or false
 end
 
 M.is_directory = function(path)
-  local stat = uv.fs_stat(path)
-  return stat and stat.type == "directory" or false
+    local stat = uv.fs_stat(path)
+    return stat and stat.type == "directory" or false
+end
+
+-- get email from git, if cannot, return $USER@$HOST
+M.get_git_email = function()
+    local git = io.popen('git config --get user.email')
+    if git then
+        local email = git:read("*all")
+        email = email:sub(1, #email - 1)
+        return email
+    else
+        warn("cannot call git")
+        return os.getenv("USER").."@"..os.getenv("HOST")
+    end end
+
+-- get email from git, if cannot, return $USER
+M.get_git_user = function()
+    local git = io.popen('git config --get user.name')
+    if git then
+        local user = git:read("*all")
+        -- remove eof
+        user = user:sub(1, #user - 1)
+        return user
+    else
+        warn("cannot call git")
+        return os.getenv("USER")
+    end
 end
 
 return M

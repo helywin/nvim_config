@@ -486,6 +486,17 @@ packer.startup(
             end
         }
 
+        use {
+            "aperezdc/vim-template",
+            config = function ()
+                local utils = require("core.utils")
+                vim.g.templates_directory = utils.join_paths(vim.fn.stdpath("config"), "template")
+                -- NOTE:replace with your own email address if not correct
+                vim.g.user = utils.get_git_user()
+                vim.g.email = utils.get_git_email()
+            end
+        }
+
         -- use {
         --     "RRethy/vim-illuminate",
         --     config = function ()
