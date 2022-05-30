@@ -6,8 +6,14 @@ if not present then
 end
 local colors = require("base46").get_colors("base_30")
 
+local close_command = function(bufnum)
+   require('bufdelete').bufdelete(bufnum, true)
+end
+
 local options = {
     options = {
+        -- close_command = "bdelete! %d",
+        close_command = close_command,
         offsets = {
             {
                 filetype = "NvimTree",

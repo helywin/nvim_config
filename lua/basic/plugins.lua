@@ -44,7 +44,8 @@ packer.startup(
             },
             config = function()
                 require("conf.nvim-tree")
-            end
+            end,
+            tag = "nightly"
         }
 
         -- one dark主题
@@ -87,6 +88,9 @@ packer.startup(
         -- bufferline插件
         use {
             "akinsho/bufferline.nvim",
+            requires = {
+                "famiu/bufdelete.nvim"
+            },
             after = "nvim-web-devicons",
             config = function()
                 require("conf.bufferline")
