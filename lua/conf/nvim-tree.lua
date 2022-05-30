@@ -58,54 +58,46 @@ local options =
         enable = true,
         update_cwd = false,
     },
+    renderer = {
+        icons = {
+            show = {
+                git = false,
+                folder = true,
+                file = true,
+                folder_arrow = true,
+            },
+            glyphs = {
+                default = " ",
+                -- symlink = " ",
+                symlink = "",
+                git = {
+                    unstaged = "",
+                    staged = "✓",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "*",
+                    deleted = "",
+                    ignored = ""
+                },
+                folder = {
+                    default = "",
+                    empty = "",
+                    empty_open = "",
+                    open = "",
+                    symlink = "",
+                    symlink_open = "",
+                    arrow_open = "",
+                    arrow_closed = "",
+                }
+            },
+            padding = ' ',
+
+        },
+        add_trailing = true,
+        root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
+        highlight_git = true,
+    }
 }
-
--- 禁用一些图标，不然文字放不下了
-vim.g.nvim_tree_show_icons = {
-    git = 0,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1,
-    symlink = 1
-}
-
--- 根目录只显示一个文件夹名称，不然放不下
-vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
-
-
--- 默认图标，可自行修改
-vim.g.nvim_tree_icons = {
-    default = " ",
-    -- symlink = " ",
-    symlink = "",
-    git = {
-        unstaged = "",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "*",
-        deleted = "",
-        ignored = ""
-    },
-    folder = {
-        default = "",
-        empty = "",
-        empty_open = "",
-        open = "",
-        symlink = "",
-        symlink_open = "",
-        arrow_open = "",
-        arrow_closed = "",
-     }
-}
-
--- 目录后加上反斜杠 /
-vim.g.nvim_tree_add_trailing = 1
--- 颜色
-vim.g.nvim_tree_git_hl = 1
--- 图标外边间隔
-vim.g.nvim_tree_icon_padding = ' '
-
 
 nvimtree.setup(options)
 
