@@ -31,6 +31,7 @@ local install_servers = {
     -- vuels = require("lsp.vuels")
 }
 
+
 local opts = { noremap = true, silent = true }
 -- 这里是 LSP 服务启动后的按键加载
 local on_attach = function(client, bufnr)
@@ -100,3 +101,9 @@ for server_name, server_options in pairs(install_servers) do
         end
     end
 end
+
+-- setup gdscript
+require'lspconfig'.gdscript.setup{
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = on_attach,
+}
