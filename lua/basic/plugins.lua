@@ -501,6 +501,11 @@ packer.startup(
             end
         }
 
+        -- gitmoji 插件
+        use {
+            "bruxisma/gitmoji.vim"
+        }
+
         -- use {
         --     "RRethy/vim-illuminate",
         --     config = function ()
