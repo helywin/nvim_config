@@ -4,14 +4,7 @@ local dap = require("dap")
 local dapui = require("dapui")
 
 -- 初始化调试界面
-dapui.setup(
-    {
-        sidebar = {
-            -- dapui 的窗口设置在右边
-            position = "right"
-        }
-    }
-)
+dapui.setup({})
 
 -- 如果开启或关闭调试，则自动打开或关闭调试界面
 dap.listeners.after.event_initialized["dapui_config"] = function()

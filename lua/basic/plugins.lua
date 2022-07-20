@@ -513,6 +513,13 @@ packer.startup(
         --     end
         -- }
 
+        use {
+            "luukvbaal/nnn.nvim",
+            config = function()
+                require("nnn").setup()
+            end
+        }
+
         -- 安装其它插件
     end,
     -- 使用浮动窗口

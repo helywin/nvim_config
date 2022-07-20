@@ -23,6 +23,7 @@ local install_servers = {
     yamlls = require("lsp.yamlls"),
     lemminx = require("lsp.lemminx"),
     pyright = require("lsp.pyright"),
+    rust_analyzer = require("lsp.rust_analyzer"),
     -- tsserver = require("lsp.tsserver"),
     -- html = require("lsp.html"),
     -- cssls = require("lsp.cssls"),
