@@ -45,10 +45,27 @@ packer.startup(
 
         -- one dark主题
         use {
-            -- "navarasu/onedark.nvim",
-            "olimorris/onedarkpro.nvim",
+            "navarasu/onedark.nvim",
+            -- "olimorris/onedarkpro.nvim",
             config = function()
-                require("conf.onedarkpro")
+                -- require("conf.onedarkpro")
+                require("conf.onedark")
+            end
+        }
+
+        --github theme
+        -- use {
+        --     "projekt0n/github-nvim-theme",
+        --     config = function ()
+        --         require("conf.github-theme")
+        --     end
+        -- }
+
+        use {
+            "kyazdani42/nvim-web-devicons",
+            -- after = "github-nvim-theme",
+            config = function ()
+                require("conf.icons")
             end
         }
 
@@ -526,4 +543,4 @@ packer.startup(
 -- ]]
 -- )
 
-vim.cmd("colorscheme onedarkpro")
+-- vim.cmd("colorscheme onedark")
