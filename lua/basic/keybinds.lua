@@ -30,7 +30,13 @@ map("n", "<C-j>", "<cmd>bnext<CR>")
 -- map("n", "<Space>", "viw")
 -- shift tab绑定按键+
 map('i', '<S-Tab>', '<C-d>')
-map('n', '<S-Tab>', '<<')
+-- map('n', '<S-Tab>', '<<')
+
+-- ["<TAB>"] = { "<cmd> Tbufnext <CR>", "  goto next buffer" },
+-- ["<S-Tab>"] = { "<cmd> Tbufprev <CR> ", "  goto prev buffer" },
+map('n', '<Tab>', '<cmd>bnext<CR>')
+map('n', '<S-Tab>', '<cmd>bprev<CR>')
+
 -- WARN:重映射<Tab>会使得<C-i>跳转功能失效!
 -- map('n', '<Tab>', '>>')
 -- shift enter绑定 (仅在带GUI的终端上能映射，比如nvim-qt，终端模拟器需要自己修改映射)
