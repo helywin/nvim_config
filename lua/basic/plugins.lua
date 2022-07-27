@@ -11,30 +11,25 @@ packer.startup(
             "wbthomason/packer.nvim"
         }
 
+        -- use {
+        --     after = "onedarkpro.nvim",
+        --     "kyazdani42/nvim-web-devicons",
+        --     config = function()
+        --         require("conf.icons")
+        --     end
+        -- }
+
+        -- use {
+        --     "yamatsum/nvim-nonicons",
+        --     requires = {
+        --         "kyazdani42/nvim-web-devicons",
+        --     }
+        -- }
+
         -- 中文文档
         -- use {
         --     "yianwillis/vimcdoc"
         -- }
-
-        -- use {
-        --     "NvChad/base46",
-        --     commit = "a0d1322b9ee2cf26847db26c9b43b6349630ad38",
-        --     config = function()
-        --         local ok, base46 = pcall(require, "base46")
-        --
-        --         if ok then
-        --             vim.g.nvchad_theme = "onedark"
-        --             base46.load_theme()
-        --         end
-        --     end
-        -- }
-
-        use {
-            "NvChad/nvterm",
-            config = function()
-                require("conf.nvterm")
-            end,
-        }
 
         -- 树结构插件
         use {
@@ -49,25 +44,24 @@ packer.startup(
         }
 
         -- one dark主题
-        -- use {
-        --     -- "navarasu/onedark.nvim",
-        --     "olimorris/onedarkpro.nvim",
-        --     config = function()
-        --         require("conf.onedarkpro")
-        --     end
-        -- }
-
-        -- tokyo night 主题
         use {
-            "folke/tokyonight.nvim",
+            -- "navarasu/onedark.nvim",
+            "olimorris/onedarkpro.nvim",
             config = function()
-                require("conf.tokyonight")
+                require("conf.onedarkpro")
             end
         }
 
+        -- tokyo night 主题
+        -- use {
+        --     "folke/tokyonight.nvim",
+        --     config = function()
+        --         require("conf.tokyonight")
+        --     end
+        -- }
+
         use {
             "nvim-lualine/lualine.nvim",
-            after = "tokyonight.nvim",
             config = function ()
                 require("conf.lualine")
             end
@@ -75,7 +69,6 @@ packer.startup(
         -- feline状态栏插件
         -- use {
         --     "feline-nvim/feline.nvim",
-        --     -- after = "base46",
         --     config = function()
         --         require("conf.feline")
         --     end
@@ -96,9 +89,9 @@ packer.startup(
         use {
             "akinsho/bufferline.nvim",
             requires = {
-                "famiu/bufdelete.nvim"
+                "famiu/bufdelete.nvim",
+                "kyazdani42/nvim-web-devicons"
             },
-            after = "nvim-web-devicons",
             config = function()
                 require("conf.bufferline")
             end
@@ -373,13 +366,6 @@ packer.startup(
             end
         }
 
-        use {
-            "kyazdani42/nvim-web-devicons",
-            -- after = "base46",
-            config = function()
-                require("conf.icons")
-            end
-        }
 
         -- 启动页面插件
         use {
@@ -519,14 +505,6 @@ packer.startup(
         --       require("conf.vim-illuminate")
         --     end
         -- }
-
-        use {
-            "luukvbaal/nnn.nvim",
-            config = function()
-                require("nnn").setup()
-            end
-        }
-
         -- 安装其它插件
     end,
     -- 使用浮动窗口
@@ -539,13 +517,13 @@ packer.startup(
 )
 
 -- 实时生效配置
-vim.cmd(
-[[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-]]
-)
+-- vim.cmd(
+-- [[
+--     augroup packer_user_config
+--         autocmd!
+--         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+--     augroup end
+-- ]]
+-- )
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme onedarkpro")

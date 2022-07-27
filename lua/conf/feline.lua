@@ -228,14 +228,10 @@ options.lsp_icon = {
         local current_buff = vim.api.nvim_get_current_buf()
         local lsp_str = nil
         for _, cli in ipairs(clients) do
-            for k, v in pairs(cli.attached_buffers) do
-                if k == current_buff then
+            for _, buf in ipairs(cli.attached_buffers) do
+                if current_buff == buf then
                     lsp_str = cli.name
-                    break;
                 end
-            end
-            if lsp_str ~= nil then
-                break;
             end
         end
         if lsp_str ~= nil then

@@ -5,7 +5,9 @@ if not present then
 end
 
 local options = {
-    theme = 'tokyonight'
+    extensions = {
+        "nvim-tree",
+    }
 }
 
 lualine.setup(options)
