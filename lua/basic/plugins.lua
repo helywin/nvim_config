@@ -16,18 +16,18 @@ packer.startup(
         --     "yianwillis/vimcdoc"
         -- }
 
-        use {
-            "NvChad/base46",
-            commit = "a0d1322b9ee2cf26847db26c9b43b6349630ad38",
-            config = function()
-                local ok, base46 = pcall(require, "base46")
-
-                if ok then
-                    vim.g.nvchad_theme = "onedark"
-                    base46.load_theme()
-                end
-            end
-        }
+        -- use {
+        --     "NvChad/base46",
+        --     commit = "a0d1322b9ee2cf26847db26c9b43b6349630ad38",
+        --     config = function()
+        --         local ok, base46 = pcall(require, "base46")
+        --
+        --         if ok then
+        --             vim.g.nvchad_theme = "onedark"
+        --             base46.load_theme()
+        --         end
+        --     end
+        -- }
 
         use {
             "NvChad/nvterm",
@@ -49,30 +49,37 @@ packer.startup(
         }
 
         -- one dark主题
-        use {
-            -- "navarasu/onedark.nvim",
-            "olimorris/onedarkpro.nvim",
-            config = function()
-                require("conf.onedarkpro")
-            end
-        }
-
-        -- tokyo night 主题
         -- use {
-        --     "folke/tokyonight.nvim",
+        --     -- "navarasu/onedark.nvim",
+        --     "olimorris/onedarkpro.nvim",
         --     config = function()
-        --         require("conf.tokyonight")
+        --         require("conf.onedarkpro")
         --     end
         -- }
 
-        -- feline状态栏插件
+        -- tokyo night 主题
         use {
-            "feline-nvim/feline.nvim",
-            after = "base46",
+            "folke/tokyonight.nvim",
             config = function()
-                require("conf.feline")
+                require("conf.tokyonight")
             end
         }
+
+        use {
+            "nvim-lualine/lualine.nvim",
+            after = "tokyonight.nvim",
+            config = function ()
+                require("conf.lualine")
+            end
+        }
+        -- feline状态栏插件
+        -- use {
+        --     "feline-nvim/feline.nvim",
+        --     -- after = "base46",
+        --     config = function()
+        --         require("conf.feline")
+        --     end
+        -- }
 
         -- gitsigns插件
         use {
@@ -368,7 +375,7 @@ packer.startup(
 
         use {
             "kyazdani42/nvim-web-devicons",
-            after = "base46",
+            -- after = "base46",
             config = function()
                 require("conf.icons")
             end
@@ -540,3 +547,5 @@ vim.cmd(
     augroup end
 ]]
 )
+
+vim.cmd("colorscheme tokyonight")
