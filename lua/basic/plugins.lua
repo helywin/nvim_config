@@ -19,12 +19,18 @@ packer.startup(
         --     end
         -- }
 
-        -- use {
-        --     "yamatsum/nvim-nonicons",
-        --     requires = {
-        --         "kyazdani42/nvim-web-devicons",
-        --     }
-        -- }
+        use {
+            "helywin/base46",
+            branch = "self",
+            config = function()
+                local ok, base46 = pcall(require, "base46")
+
+                if ok then
+                    vim.g.nvchad_theme = "onedark"
+                    base46.load_theme()
+                end
+            end
+        }
 
         -- 中文文档
         -- use {
@@ -44,30 +50,13 @@ packer.startup(
         }
 
         -- one dark主题
-        use {
-            "navarasu/onedark.nvim",
-            -- "olimorris/onedarkpro.nvim",
-            config = function()
-                -- require("conf.onedarkpro")
-                require("conf.onedark")
-            end
-        }
-
-        --github theme
         -- use {
-        --     "projekt0n/github-nvim-theme",
-        --     config = function ()
-        --         require("conf.github-theme")
+            -- "navarasu/onedark.nvim",
+        --     "olimorris/onedarkpro.nvim",
+        --     config = function()
+        --         require("conf.onedarkpro")
         --     end
         -- }
-
-        use {
-            "kyazdani42/nvim-web-devicons",
-            -- after = "github-nvim-theme",
-            config = function ()
-                require("conf.icons")
-            end
-        }
 
         -- tokyo night 主题
         -- use {
@@ -522,6 +511,29 @@ packer.startup(
         --       require("conf.vim-illuminate")
         --     end
         -- }
+
+        use {
+            "luukvbaal/nnn.nvim",
+            config = function()
+                require("nnn").setup()
+            end
+        }
+
+        -- use {
+        --     "phaazon/hop.nvim",
+        --     branch = "v2",
+        --     config = function ()
+        --         require("conf.hop");
+        --     end
+        -- }
+
+        use {
+            "ggandor/lightspeed.nvim",
+            config = function ()
+                require("conf.lightspeed")
+            end
+        }
+
         -- 安装其它插件
     end,
     -- 使用浮动窗口
@@ -531,6 +543,7 @@ packer.startup(
         }
     }
 }
+
 )
 
 -- 实时生效配置

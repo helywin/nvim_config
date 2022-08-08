@@ -24,6 +24,7 @@ local install_servers = {
     lemminx = require("lsp.lemminx"),
     pyright = require("lsp.pyright"),
     rust_analyzer = require("lsp.rust_analyzer"),
+    cssls = require("lsp.cssls"),
     -- tsserver = require("lsp.tsserver"),
     -- html = require("lsp.html"),
     -- cssls = require("lsp.cssls"),
@@ -66,6 +67,7 @@ local on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cc', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>Lspsaga rename<CR>', opts)
     end
 end
 
