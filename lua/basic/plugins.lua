@@ -17,8 +17,8 @@ packer.startup(
         -- }
 
         use {
-            "NvChad/base46",
-            commit = "a0d1322b9ee2cf26847db26c9b43b6349630ad38",
+            "helywin/base46",
+            branch = "self",
             config = function()
                 local ok, base46 = pcall(require, "base46")
 
@@ -49,13 +49,13 @@ packer.startup(
         }
 
         -- one dark主题
-        use {
+        -- use {
             -- "navarasu/onedark.nvim",
-            "olimorris/onedarkpro.nvim",
-            config = function()
-                require("conf.onedarkpro")
-            end
-        }
+        --     "olimorris/onedarkpro.nvim",
+        --     config = function()
+        --         require("conf.onedarkpro")
+        --     end
+        -- }
 
         -- tokyo night 主题
         -- use {
@@ -520,6 +520,21 @@ packer.startup(
             end
         }
 
+        -- use {
+        --     "phaazon/hop.nvim",
+        --     branch = "v2",
+        --     config = function ()
+        --         require("conf.hop");
+        --     end
+        -- }
+
+        use {
+            "ggandor/lightspeed.nvim",
+            config = function ()
+                require("conf.lightspeed")
+            end
+        }
+
         -- 安装其它插件
     end,
     -- 使用浮动窗口
@@ -529,6 +544,7 @@ packer.startup(
         }
     }
 }
+
 )
 
 -- 实时生效配置
