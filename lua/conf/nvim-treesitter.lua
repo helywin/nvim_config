@@ -7,6 +7,11 @@ if not present then
     return
 end
 
+local present, base46 = pcall(require, "base46")
+
+local base30 = base46.get_colors("base30")
+
+
 require("nvim-treesitter.configs").setup(
     {
         -- 安装的高亮支持来源
@@ -47,8 +52,16 @@ require("nvim-treesitter.configs").setup(
         -- 彩虹括号，由 nvim-ts-rainbow 插件提供
         rainbow = {
             enable = true,
-            extended_mode = true
-            -- colors = {}, -- table of hex strings
+            extended_mode = true,
+            -- colors = {
+            --     rainbowcol1 = { fg = theme.colors.red },
+            --     rainbowcol2 = { fg = theme.colors.yellow },
+            --     rainbowcol3 = { fg = theme.colors.orange },
+            --     rainbowcol4 = { fg = theme.colors.green },
+            --     rainbowcol5 = { fg = theme.colors.blue },
+            --     rainbowcol6 = { fg = theme.colors.cyan },
+            --     rainbowcol7 = { fg = theme.colors.purple },
+            -- }, -- table of hex strings
             -- termcolors = {} -- table of colour name strings
         },
 

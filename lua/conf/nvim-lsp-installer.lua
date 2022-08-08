@@ -67,6 +67,7 @@ local on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cc', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>Lspsaga rename<CR>', opts)
     end
 end
 
