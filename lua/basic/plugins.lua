@@ -11,12 +11,9 @@ packer.startup(
             "wbthomason/packer.nvim"
         }
 
+        -- 中文文档
         -- use {
-        --     after = "onedarkpro.nvim",
-        --     "kyazdani42/nvim-web-devicons",
-        --     config = function()
-        --         require("conf.icons")
-        --     end
+        --     "yianwillis/vimcdoc"
         -- }
 
         use {
@@ -32,21 +29,23 @@ packer.startup(
             end
         }
 
-        -- 中文文档
-        -- use {
-        --     "yianwillis/vimcdoc"
-        -- }
+        use {
+            "NvChad/nvterm",
+            config = function()
+                require("conf.nvterm")
+            end,
+        }
 
         -- 树结构插件
         use {
             "kyazdani42/nvim-tree.lua",
+            after = "nvim-web-devicons",
             requires = {
                 "kyazdani42/nvim-web-devicons"
             },
             config = function()
                 require("conf.nvim-tree")
             end,
-            tag = "nightly"
         }
 
         -- one dark主题
@@ -66,19 +65,14 @@ packer.startup(
         --     end
         -- }
 
+        -- feline状态栏插件
         use {
-            "nvim-lualine/lualine.nvim",
-            config = function ()
-                require("conf.lualine")
+            "feline-nvim/feline.nvim",
+            after = "base46",
+            config = function()
+                require("conf.feline")
             end
         }
-        -- feline状态栏插件
-        -- use {
-        --     "feline-nvim/feline.nvim",
-        --     config = function()
-        --         require("conf.feline")
-        --     end
-        -- }
 
         -- gitsigns插件
         use {
@@ -95,9 +89,9 @@ packer.startup(
         use {
             "akinsho/bufferline.nvim",
             requires = {
-                "famiu/bufdelete.nvim",
-                "kyazdani42/nvim-web-devicons"
+                "famiu/bufdelete.nvim"
             },
+            after = "nvim-web-devicons",
             config = function()
                 require("conf.bufferline")
             end
@@ -372,6 +366,13 @@ packer.startup(
             end
         }
 
+        use {
+            "kyazdani42/nvim-web-devicons",
+            after = "base46",
+            config = function()
+                require("conf.icons")
+            end
+        }
 
         -- 启动页面插件
         use {
@@ -547,13 +548,11 @@ packer.startup(
 )
 
 -- 实时生效配置
--- vim.cmd(
--- [[
---     augroup packer_user_config
---         autocmd!
---         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
---     augroup end
--- ]]
--- )
-
--- vim.cmd("colorscheme onedark")
+vim.cmd(
+[[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
+]]
+)

@@ -10,6 +10,7 @@ local options =
 {
     -- 视图
     view = {
+        adaptive_size = false,
         -- 宽度
         width = 30,
         -- 高度
@@ -17,7 +18,7 @@ local options =
         -- 隐藏顶部的根目录显示
         hide_root_folder = false,
         -- 自动调整大小
-        auto_resize = true,
+        side = "left",
         -- 按键绑定
         mappings = {
             custom_only = false,
@@ -47,10 +48,61 @@ local options =
         ignore = false,
         timeout = 200
     },
+    filesystem_watchers = {
+        enable = true
+    },
+
+    renderer = {
+        highlight_git = true,
+        add_trailing = true,
+        highlight_opened_files = "none",
+        root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
+        indent_markers = {
+            enable = false,
+        },
+
+        -- 禁用一些图标，不然文字放不下了
+        icons = {
+            -- webdev_colors = false,
+            padding = " ",
+            show = {
+                git = false,
+                folder = true,
+                file = true,
+                folder_arrow = true,
+            },
+            glyphs = {
+                -- default = "",
+                -- symlink = " ",
+                symlink = "",
+                git = {
+                    unstaged = "",
+                    staged = "✓",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "*",
+                    deleted = "",
+                    ignored = ""
+                },
+                folder = {
+                    default = "",
+                    empty = "",
+                    empty_open = "",
+                    open = "",
+                    symlink = "",
+                    symlink_open = "",
+                    arrow_open = "",
+                    arrow_closed = "",
+                }
+            }
+        }
+    },
+
     disable_netrw = true,
     hijack_netrw = true,
-    ignore_ft_on_setup = { "dashboard" },
+    ignore_ft_on_setup = { "dashboard", "alpha" },
     open_on_tab = false,
+    open_on_setup = false,
     hijack_cursor = true,
     hijack_unnamed_buffer_when_opening = false,
     update_cwd = true,
@@ -59,53 +111,6 @@ local options =
         update_cwd = false,
     },
 }
-
--- 禁用一些图标，不然文字放不下了
-vim.g.nvim_tree_show_icons = {
-    git = 0,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1,
-    symlink = 1
-}
-
--- 根目录只显示一个文件夹名称，不然放不下
-vim.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
-
-
--- 默认图标，可自行修改
-vim.g.nvim_tree_icons = {
-    -- default = "",
-    -- symlink = " ",
-    symlink = "",
-    git = {
-        unstaged = "",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "*",
-        deleted = "",
-        ignored = ""
-    },
-    folder = {
-        default = "",
-        empty = "",
-        empty_open = "",
-        open = "",
-        symlink = "",
-        symlink_open = "",
-        arrow_open = "",
-        arrow_closed = "",
-     }
-}
-
--- 目录后加上反斜杠 /
-vim.g.nvim_tree_add_trailing = 1
--- 颜色
-vim.g.nvim_tree_git_hl = 1
--- 图标外边间隔
-vim.g.nvim_tree_icon_padding = ' '
-
 
 nvimtree.setup(options)
 

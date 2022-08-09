@@ -71,7 +71,8 @@ map("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>")
 
 
 -- 按 leader e 打开文件树
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>")
+map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
 -- 按 leader fc 在文件树中找到当前以打开文件的位置
 map("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>")
 
@@ -96,4 +97,4 @@ map('n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>')
 map('n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>')
 
 -- hop
--- map('n', '<leader>hw', '<cmd>HopWord<cr>');
+map('n', '<leader>hw', '<cmd>HopWord<cr>');

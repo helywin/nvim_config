@@ -4,7 +4,7 @@ if not present then
     return
 end
 
--- local colors = require("onedarkpro.colors.onedark").base_colors()
+local colors = require("base46").get_colors("base_30")
 
 local options = {
     override = {
