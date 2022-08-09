@@ -39,13 +39,13 @@ packer.startup(
         -- 树结构插件
         use {
             "kyazdani42/nvim-tree.lua",
+            after = "nvim-web-devicons",
             requires = {
                 "kyazdani42/nvim-web-devicons"
             },
             config = function()
                 require("conf.nvim-tree")
             end,
-            tag = "nightly"
         }
 
         -- one dark主题
