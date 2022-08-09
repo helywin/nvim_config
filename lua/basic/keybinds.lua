@@ -96,4 +96,4 @@ map('n', '<A-n>', '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>')
 map('n', '<A-p>', '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>')
 
 -- hop
--- map('n', '<leader>hw', '<cmd>HopWord<cr>');
+map('n', '<leader>hw', '<cmd>HopWord<cr>');
