@@ -63,7 +63,7 @@ local actions = require("telescope.actions")
 
 telescope.setup(options)
 
-local extensions = { "themes", "terms" }
+local extensions = { "themes", "terms", "lazygit" }
 
 pcall(function()
     for _, ext in ipairs(extensions) do

@@ -174,12 +174,12 @@ packer.startup(
         }
 
         -- 内置终端
-        use {
-            "akinsho/toggleterm.nvim",
-            config = function()
-                require("conf.toggleterm")
-            end
-        }
+        -- use {
+        --     "akinsho/toggleterm.nvim",
+        --     config = function()
+        --         require("conf.toggleterm")
+        --     end
+        -- }
 
         -- 模糊查找
         use {
