@@ -55,8 +55,10 @@ map('n', "gp", "`.")
 -- map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
 
 -- Comment
-map("n", "<Leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>")
-map("v", "<Leader>/", "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>")
+map("n", "<Leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>")
+map("n", "<C-_>", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>")
+map("x", "<Leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
+map("x", "<C-_>", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
 
 -- LazyGit
 map('n', "<Leader>lg", "<cmd>LazyGit<CR>")
