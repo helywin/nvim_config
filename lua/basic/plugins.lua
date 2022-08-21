@@ -513,12 +513,12 @@ packer.startup(
         --     end
         -- }
 
-        use {
-            "luukvbaal/nnn.nvim",
-            config = function()
-                require("nnn").setup()
-            end
-        }
+        -- use {
+        --     "luukvbaal/nnn.nvim",
+        --     config = function()
+        --         require("nnn").setup()
+        --     end
+        -- }
 
         -- use {
         --     "phaazon/hop.nvim",
