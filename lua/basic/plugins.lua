@@ -135,7 +135,7 @@ packer.startup(
 
         -- 自动保存
         use {
-            "Pocco81/AutoSave.nvim",
+            "XXiaoA/auto-save.nvim",
             config = function()
                 require("conf.AutoSave")
             end
@@ -532,6 +532,13 @@ packer.startup(
             "ggandor/lightspeed.nvim",
             config = function ()
                 require("conf.lightspeed")
+            end
+        }
+        
+        use {
+            "nathom/filetype.nvim",
+            config = function ()
+                require("conf.filetype")
             end
         }
 

@@ -17,7 +17,7 @@ local options =
         exists = true,
         -- 忽略自动保存的文件名字或文件类型
         filename_is_not = {},
-        filetype_is_not = {},
+        filetype_is_not = {"NvimTree", "DressingSelect"},
         modifiable = true
     },
     -- 保存时写入全部的 Buffer
