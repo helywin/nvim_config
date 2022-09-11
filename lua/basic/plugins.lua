@@ -135,7 +135,7 @@ packer.startup(
 
         -- 自动保存
         use {
-            "XXiaoA/auto-save.nvim",
+            "Pocco81/auto-save.nvim",
             config = function()
                 require("conf.AutoSave")
             end
